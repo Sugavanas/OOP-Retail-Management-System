@@ -17,7 +17,7 @@ public class Items
 
         //For testing
         ArrayList<Item> itemArrayList = file.read();
-        for(Item i : itemArrayList)
+        for (Item i : itemArrayList)
             System.out.println(i.saveString());
     }
 }

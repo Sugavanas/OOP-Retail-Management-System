@@ -9,26 +9,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * I/O class for reading/writing to files.
+ * I/O class for reading/writing to files with basic functions such as getById/insert/update.
  */
 public class FileIO<T extends Objects>
 {
+    /**
+     * The directory to store data files
+     */
     private static String dataDirectory = System.getProperty("user.dir") + "/data/";
 
     private String fileName;
     private Class<T> aClass;
 
+    /**
+     * Constructor
+     * @param fileName Name of file to write/read from
+     * @param aClass Any class that extends from Objects class
+     */
     public FileIO(String fileName, Class<T> aClass)
     {
         this.fileName = fileName;
         this.aClass = aClass;
     }
+
     /**
      * Read from file
      *
-     * @return ArrayList<obj> or null if error
+     * @return ArrayList<T> or null if error
      */
-
     public ArrayList<T> read()
     {
         //Check if file exists.
@@ -60,6 +68,11 @@ public class FileIO<T extends Objects>
         }
     }
 
+    /**
+     * Get Object by id.
+     * @param id unique id
+     * @return T (object instance)
+     */
     public T getByID(int id)
     {
         //Check if file exists.
@@ -117,6 +130,10 @@ public class FileIO<T extends Objects>
 
     }
 
+    /**
+     * Write multiple new entries to file (probably won't be used at all so can be removed)
+     * @param data ArrayList<T>
+     */
     public void write(ArrayList<T> data)
     {
         //Check if file exists, and if not check and create the data directory

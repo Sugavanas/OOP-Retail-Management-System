@@ -5,13 +5,13 @@ package classes;
  */
 public abstract class Objects
 {
-    public Objects()
-    {
+    public Objects() {
 
     }
 
     /**
      * This constructor is used by FileIO to create the objects
+     *
      * @param data Read line in string format.
      */
     public Objects(String data)

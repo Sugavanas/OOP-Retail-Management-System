@@ -12,14 +12,15 @@ import classes.Objects;
  * cost - Item cost
  *
  */
-public class Item extends Objects {
-    public int code;
+public class Item extends Objects
+{
+    private int code;
 
-    public String name;
+    private String name;
 
-    public double price;
+    private double price;
 
-    public double cost;
+    private double cost;
 
     public Item(String data)
     {
@@ -35,28 +36,67 @@ public class Item extends Objects {
     }
 
     @Override
-    public void loadFromString(String data) {
-        try
-        {
+    public void loadFromString(String data)
+    {
+        try {
             String[] parts = data.split(";");
             this.code = Integer.valueOf(parts[0]);
             this.name = parts[1];
             this.price = Double.valueOf(parts[2]);
             this.cost = Double.valueOf(parts[3]);
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println("Error Loading."); //TODO log error
         }
     }
 
     @Override
-    public String saveString() {
+    public String saveString()
+    {
         return String.format("%s;%s;%s;%s;", String.valueOf(code), name, String.valueOf(price), String.valueOf(cost));
     }
 
     @Override
-    public String getID() {
+    public String getID()
+    {
         return String.valueOf(code);
+    }
+
+    /**
+     * Get Set methods
+     */
+
+    public int getCode()
+    {
+        return code;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public double getPrice()
+    {
+        return price;
+    }
+
+    public void setPrice(double price)
+    {
+        this.price = price;
+    }
+
+    public double getCost()
+    {
+        return cost;
+    }
+
+    public void setCost(double cost)
+    {
+        this.cost = cost;
     }
 }
