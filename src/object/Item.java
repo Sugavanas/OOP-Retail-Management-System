@@ -24,18 +24,6 @@ public class Item extends Objects {
     public Item(String data)
     {
         super(data);
-        try
-        {
-            String[] parts = data.split(";");
-            this.code = Integer.valueOf(parts[0]);
-            this.name = parts[1];
-            this.price = Double.valueOf(parts[2]);
-            this.cost = Double.valueOf(parts[3]);
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Error Loading."); //TODO log error
-        }
     }
 
     public Item(int code, String name, double price, double cost)
@@ -48,9 +36,18 @@ public class Item extends Objects {
 
     @Override
     public void loadFromString(String data) {
-        //Just to test it for now
-        code = 1;
-        name = data;
+        try
+        {
+            String[] parts = data.split(";");
+            this.code = Integer.valueOf(parts[0]);
+            this.name = parts[1];
+            this.price = Double.valueOf(parts[2]);
+            this.cost = Double.valueOf(parts[3]);
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error Loading."); //TODO log error
+        }
     }
 
     @Override
