@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/42069745/pass-class-type-as-parameter-to-use-in-arraylist
+https://stackoverflow.com/questions/6241513/how-to-create-instance-of-a-class-with-the-parameters-in-the-constructor-using-r
