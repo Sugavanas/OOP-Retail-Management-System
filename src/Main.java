@@ -1,12 +1,13 @@
 import db.Customers;
 import db.Items;
+import db.Staffs;
 
 public class Main {
     public static void main(String[] args)
     {
         Items.addItem(001, "dsd", 15, 6);
         Customers.addCustomer(1, "John", "Doe", "0123456789");
-
+        Staffs.addItem(1, "John Doe", "Great", true);
         /**
          * Main Screen (After launching):
          * 1)Login
