@@ -20,4 +20,9 @@ public class Items
         for (Item i : itemArrayList)
             System.out.println(i.saveString());
     }
+
+    public static Item loadItem(int code)
+    {
+        return file.getByID(code);
+    }
 }
