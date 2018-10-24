@@ -1,6 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import db.Customers;
-import db.Items;
 import db.Staffs;
 import object.Staff;
 
@@ -92,10 +89,13 @@ public class Main {
         int id;
         String password;
 
-        System.out.println("Welcome, enter login details below: ");
+        System.out.println("Welcome, enter login details below: (Enter ID as 0 to exit) ");
         do {
             System.out.print("Staff ID: ");
             id = input.nextInt();
+
+            if(id == 0)
+                return;
 
             System.out.print("Password: ");
             password = input.next();
@@ -110,13 +110,83 @@ public class Main {
 
     public static void mainMenu()
     {
+        divider();
+        System.out.println("Retail Management System (RMS) v1.0");
+        System.out.println("Main Menu");
+        System.out.println("1) Inventory Control\n" +
+                            "2) Billing\n" +
+                            "3) Customers\n" +
+                            "4) Edit my profile\n" +
+                            (currentStaff.getIsAdmin() ? "5) Add/Remove staffs\n" : "") +
+                            "0) Exit");
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    exit();
+                    break;
+                case 1:
+                    showInventoryMenu();
+                    break;
+                case 2:
+                    showBillingMenu();
+                    break;
+                case 3:
+                    showCustomersMenu();
+                    break;
+                case 4:
+                    showProfileMenu();
+                    break;
+                case 5:
+                    showStaffMenu();
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
+
+    }
+
+    static void showInventoryMenu()
+    {
+
+    }
+
+    static void showBillingMenu()
+    {
+
+    }
+
+    static void showCustomersMenu()
+    {
+
+    }
+
+    static void showProfileMenu()
+    {
+
+    }
+
+    static void showStaffMenu()
+    {
 
     }
 
     public static void divider()
     {
-        System.out.println("\n\n");
+        System.out.println("\n");
         System.out.println("======================================================================================");
-        System.out.println("\n\n");
+        System.out.println();
+    }
+
+    static void exit()
+    {
+        System.exit(0);
     }
 }

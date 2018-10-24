@@ -27,6 +27,10 @@ public class Staffs
     public static Staff Login(int id, String password)
     {
         Staff s = file.getByID(id);
+
+        if(s == null)
+            return null;
+
         if(s.getPassword().equals(password))
             return s;
 
