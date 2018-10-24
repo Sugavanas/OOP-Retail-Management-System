@@ -22,17 +22,20 @@ public class Item extends Objects
 
     private double cost;
 
+    private int stockAvailable;
+
     public Item(String data)
     {
         super(data);
     }
 
-    public Item(int code, String name, double price, double cost)
+    public Item(int code, String name, double price, double cost, int stockAvailable)
     {
         this.code = code;
         this.name = name;
         this.price = price;
         this.cost = cost;
+        this.stockAvailable = stockAvailable;
     }
 
     @Override
@@ -44,6 +47,7 @@ public class Item extends Objects
             this.name = parts[1];
             this.price = Double.valueOf(parts[2]);
             this.cost = Double.valueOf(parts[3]);
+            this.stockAvailable = Integer.valueOf(parts[4]);
         } catch (Exception ex) {
             System.out.println("Error Loading."); //TODO log error
         }
@@ -52,7 +56,7 @@ public class Item extends Objects
     @Override
     public String saveString()
     {
-        return String.format("%s;%s;%s;%s;", String.valueOf(code), name, String.valueOf(price), String.valueOf(cost));
+        return String.format("%s;%s;%s;%s;%s;", String.valueOf(code), name, String.valueOf(price), String.valueOf(cost), String.valueOf(stockAvailable));
     }
 
     @Override
@@ -99,4 +103,15 @@ public class Item extends Objects
     {
         this.cost = cost;
     }
+
+    public int getStockAvailable()
+    {
+        return stockAvailable;
+    }
+
+    public void setStockAvailable(int stockAvailable)
+    {
+        this.stockAvailable = stockAvailable;
+    }
+
 }

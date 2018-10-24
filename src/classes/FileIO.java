@@ -41,7 +41,7 @@ public class FileIO<T extends Objects>
     {
         //Check if file exists.
         if(!exists(fileName))
-            return null;
+            return new ArrayList<>();
 
         //Initialize the file.
         File file = new File(dataDirectory + fileName);
@@ -64,7 +64,7 @@ public class FileIO<T extends Objects>
         }
         catch (FileNotFoundException | InvocationTargetException | IllegalAccessException | InstantiationException | NoSuchMethodException ex)
         {
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -109,6 +109,9 @@ public class FileIO<T extends Objects>
      */
     public void insert(T t)
     {
+        if(!this.checkIDExists(t.getID()))
+            return;
+
         try
         {
             PrintWriter pw = new PrintWriter(new FileOutputStream(dataDirectory + fileName, true));
@@ -169,6 +172,16 @@ public class FileIO<T extends Objects>
         }
     }
 
+    public boolean checkIDExists(String id)
+    {
+        ArrayList<T> arrayList = this.read();
+        for(T x : arrayList)
+        {
+            if(x.getID().equals(id))
+                return false;
+        }
+        return true;
+    }
     /**
      * Check if a file exists in data directory
      * @param fileName Name of file.

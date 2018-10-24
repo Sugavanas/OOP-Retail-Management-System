@@ -51,27 +51,27 @@ public class Staff extends Objects
         return String.valueOf(id);
     }
 
-    private String getName()
+    public String getName()
     {
         return name;
     }
 
-    private void setName(String name)
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    private String getPassword()
+    public String getPassword()
     {
         return password;
     }
 
-    private void setPassword(String password)
+    public void setPassword(String password)
     {
         this.password = password;
     }
 
-    private Boolean getIsAdmin()
+    public Boolean getIsAdmin()
     {
         return isAdmin;
     }
