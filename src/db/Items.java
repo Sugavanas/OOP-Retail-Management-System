@@ -21,6 +21,11 @@ public class Items
             System.out.println(i.saveString());
     }
 
+    public static void updateItem(Item i)
+    {
+        file.update(i);
+    }
+
     public static Item loadItem(int code)
     {
         return file.getByID(code);

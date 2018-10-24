@@ -124,14 +124,26 @@ public class FileIO<T extends Objects>
     /**
      * Update using id. Id field cannot be changed once inserted.
      * @param t Object Instance
+     *
+     * //TODO: find a better way to do this?
      */
     public void update(T t)
     {
+        ArrayList<T> arrayList = this.read();
 
+        for(int i = 0; i < arrayList.size(); i++)
+        {
+            if(arrayList.get(i).getID().equals(t.getID()))
+            {
+                arrayList.set(i, t);
+            }
+        }
+
+        this.write(arrayList);
     }
 
     /**
-     * Write multiple new entries to file (probably won't be used at all so can be removed)
+     * Write multiple new entries to file
      * @param data ArrayList<T>
      */
     public void write(ArrayList<T> data)
