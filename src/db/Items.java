@@ -23,7 +23,8 @@ public class Items
 
     public static void removeItem(int code)
     {
-
+        Item i = file.getByID(code);
+        file.delete(i);
     }
 
     public static void updateItem(Item i)
