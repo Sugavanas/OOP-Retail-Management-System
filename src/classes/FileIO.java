@@ -64,6 +64,7 @@ public class FileIO<T extends Objects>
         }
         catch (FileNotFoundException | InvocationTargetException | IllegalAccessException | InstantiationException | NoSuchMethodException ex)
         {
+            System.out.println("ERROR : " + dataDirectory + "  "  + ex.getMessage());
             return new ArrayList<>();
         }
     }
@@ -99,6 +100,7 @@ public class FileIO<T extends Objects>
         }
         catch (FileNotFoundException | InvocationTargetException | IllegalAccessException | InstantiationException | NoSuchMethodException ex)
         {
+            System.out.println("ERROR : " + dataDirectory + "  "  + ex.getMessage());
             return null;
         }
     }
@@ -120,6 +122,7 @@ public class FileIO<T extends Objects>
         }
         catch (FileNotFoundException ex)
         {
+            System.out.println("ERROR : " + dataDirectory + "  "  + ex.getMessage());
             return;
         }
     }
