@@ -1,3 +1,4 @@
+import db.Items;
 import db.Staffs;
 import object.Staff;
 
@@ -155,6 +156,76 @@ public class Main {
 
     static void showInventoryMenu()
     {
+        divider();
+        System.out.println("1) Items\n" +
+                            "2) Item Stock\n" +
+                            " 0) Go back");
+
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+                    showModifyItemsMenu();
+                    break;
+                case 2:
+                    showModifyStockMenu();
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
+    }
+
+    static void showModifyItemsMenu()
+    {
+        divider();
+        System.out.println("1) Get item details \n" +
+                "2) Add item\n" +
+                "3) Remove item\n" +
+                "4) Edit item\n" +
+                "0) Go back");
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    showInventoryMenu();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+                    printItemAdd();
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
+
+    }
+
+    static void showModifyStockMenu()
+    {
 
     }
 
@@ -176,6 +247,37 @@ public class Main {
     static void showStaffMenu()
     {
 
+    }
+
+    static void printItemAdd()
+    {
+        System.out.println("Creating new item: ");
+        int code;
+        String name;
+        double price;
+        double cost;
+        int stockAvaiable;
+
+        System.out.print("Enter item code: ");
+        code = input.nextInt();
+
+        System.out.print("Enter item name:");
+        name = input.next();
+
+        System.out.print("Enter item price: ");
+        price = input.nextDouble();
+
+        System.out.print("Enter item cost: ");
+        cost = input.nextDouble();
+
+        System.out.print("Enter item stock quantity: ");
+        stockAvaiable = input.nextInt();
+
+        Items.addItem(code, name, price, cost, stockAvaiable);
+
+        System.out.println("Item Created.");
+
+        showModifyItemsMenu();
     }
 
     public static void divider()
