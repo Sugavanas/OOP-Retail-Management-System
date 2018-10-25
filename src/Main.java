@@ -38,7 +38,7 @@ public class Main {
          *
          * --Modify Item
          * 1) Get item details
-         * 2) Add itee
+         * 2) Add item
          * 3) Remove item
          * 4) Edit item
          *
@@ -70,10 +70,10 @@ public class Main {
 
         System.out.println("Welcome, create a new staff login: ");
 
-        System.out.print("Enter Staff Name: ");
-        name = input.next();
-        System.out.print("Enter Password: ");
-        password = input.next();
+        System.out.println("Enter Staff Name: ");
+        name = input.nextLine();
+        System.out.println("Enter Password: ");
+        password = input.nextLine();
 
         Staffs.addStaff(1, name, password, true);
 
