@@ -21,6 +21,12 @@ public class Items
             System.out.println(i.saveString());
     }
 
+    public static void removeItem(int code)
+    {
+        Item i = file.getByID(code);
+        file.delete(i);
+    }
+
     public static void updateItem(Item i)
     {
         file.update(i);

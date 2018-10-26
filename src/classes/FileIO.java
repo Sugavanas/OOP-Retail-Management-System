@@ -30,6 +30,7 @@ public class FileIO<T extends Objects>
     {
         this.fileName = fileName;
         this.aClass = aClass;
+        createDirectory();
     }
 
     /**
@@ -142,6 +143,23 @@ public class FileIO<T extends Objects>
             if(arrayList.get(i).getID().equals(t.getID()))
             {
                 arrayList.set(i, t);
+                break; //Once one item is updated, we can break the loop.
+            }
+        }
+
+        this.write(arrayList);
+    }
+
+    public void delete(T t)
+    {
+        ArrayList<T> arrayList = this.read();
+
+        for(int i = 0; i < arrayList.size(); i++)
+        {
+            if(arrayList.get(i).getID().equals(t.getID()))
+            {
+                arrayList.remove(i);
+                break; //Once one item is removed, we can break the loop.
             }
         }
 
