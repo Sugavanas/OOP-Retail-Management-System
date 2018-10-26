@@ -216,7 +216,7 @@ public class Main {
                     printItemRemove();
                     break;
                 case 4:
-
+                    printItemEdit();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -392,6 +392,42 @@ public class Main {
         System.out.println("Enter ID of item to be removed: ");
         int code = input.nextInt();
         Items.removeItem(code);
+
+        showModifyItemsMenu();
+    }
+
+    public static void printItemEdit()
+    {
+        System.out.print("Enter code of item to be edit: ");
+        int code = input.nextInt();
+        String name;
+        double price;
+        double cost;
+        int stockAvaiable;
+
+
+        Item i = Items.loadItem(code);
+
+        System.out.println("Modifying item " + code + " (Enter 0 to not change value)");
+
+        System.out.print("Enter item name [" + i.getName() +"]: ");
+        name = input.next();
+        name = name.equals("0") ? i.getName() : name;
+
+        System.out.print("Enter item price [" + i.getPrice() +"]:");
+        price = input.nextDouble();
+        price = price == 0 ? i.getPrice() : price;
+
+        System.out.print("Enter item cost [" + i.getCost() +"]:");
+        cost = input.nextDouble();
+        cost = cost == 0 ? i.getCost() : cost;
+
+        i.setName(name);
+        i.setPrice(price);
+        i.setCost(cost);
+        Items.editItem(i);
+
+        System.out.println("Item Updated.");
 
         showModifyItemsMenu();
     }
