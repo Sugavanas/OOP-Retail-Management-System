@@ -1,5 +1,6 @@
 import db.Items;
 import db.Staffs;
+import object.Item;
 import object.Staff;
 
 import java.util.Scanner;
