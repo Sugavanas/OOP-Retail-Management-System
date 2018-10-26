@@ -211,7 +211,7 @@ public class Main {
                     printItemAdd();
                     break;
                 case 3:
-
+                    printItemRemove();
                     break;
                 case 4:
 
@@ -385,9 +385,18 @@ public class Main {
         showModifyItemsMenu();
     }
 
+    public static void printItemRemove()
+    {
+        System.out.print("Enter ID of item to be removed: ");
+        int code = input.nextInt();
+        Items.removeItem(code);
+
+        showModifyItemsMenu();
+    }
+
     public static void printItemDetails()
     {
-        System.out.print("Enter item ID: ");
+        System.out.print("Enter ID of item to be added: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
 
