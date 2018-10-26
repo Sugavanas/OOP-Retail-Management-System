@@ -407,13 +407,11 @@ public class Main {
         showModifyItemsMenu();
     }
 
-<<<<<<< HEAD
     static void printStaffAdd()
     {
 
     }
-    static void divider()
-=======
+
     public static void printStockEdit()
     {
         System.out.print("Enter ID of item to be updated: ");
@@ -437,7 +435,6 @@ public class Main {
     }
 
     public static void divider()
->>>>>>> cbffd35d87b5c4547e34cb61358e1a57d7f3bb4b
     {
         System.out.println("\n");
         System.out.println("======================================================================================");
