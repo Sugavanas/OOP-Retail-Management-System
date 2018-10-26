@@ -392,7 +392,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    public static void printItemRemove()
+    static void printItemRemove()
     {
         System.out.println("Enter ID of item to be removed: ");
         int code = input.nextInt();
@@ -401,7 +401,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    public static void printItemEdit()
+    static void printItemEdit()
     {
         System.out.print("Enter code of item to be edit: ");
         int code = input.nextInt();
@@ -437,7 +437,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    public static void printItemDetails()
+    static void printItemDetails()
     {
         System.out.println("Enter ID of item to be retrieved: ");
         int code = input.nextInt();
@@ -477,7 +477,7 @@ public class Main {
 
     }
 
-    public static void printStaffRemove()
+    static void printStaffRemove()
     {
         System.out.print("Enter ID of Staff to be removed: ");
         int id = input.nextInt();
@@ -488,7 +488,7 @@ public class Main {
     }
 
 
-    public static void printStockEdit()
+    static void printStockEdit()
     {
         System.out.print("Enter ID of item to be updated: ");
         int code = input.nextInt();
@@ -500,7 +500,7 @@ public class Main {
         showModifyStockMenu();
     }
 
-    public static void printStockCheck()
+    static void printStockCheck()
     {
         System.out.print("Enter ID of item to be checked: ");
         int code = input.nextInt();
@@ -510,7 +510,7 @@ public class Main {
         showModifyStockMenu();
     }
 
-    public static void printCustomerAdd()
+    static void printCustomerAdd()
     {
         System.out.println("Creating new customer: ");
         int code;
@@ -535,7 +535,7 @@ public class Main {
         showCustomersMenu();
     }
 
-    public static void printCustomerCheck()
+    static void printCustomerCheck()
     {
         System.out.print("Enter customer ID: ");
         int code = input.nextInt();
@@ -545,7 +545,7 @@ public class Main {
         showCustomersMenu();
     }
 
-    public static void printCustomerModify()
+    static void printCustomerModify()
     {
         System.out.print("Enter customer ID: ");
         int code = input.nextInt();
