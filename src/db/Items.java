@@ -27,7 +27,7 @@ public class Items
         file.delete(i);
     }
 
-    public static void updateItem(Item i)
+    public static void editItem(Item i)
     {
         file.update(i);
     }
