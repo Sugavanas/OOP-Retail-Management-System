@@ -76,7 +76,7 @@ public class Customer extends Objects
         this.last_name = last_name;
     }
 
-    public String getMobile_number(String mobile_number)
+    public String getMobile_number()
     {
         return mobile_number;
     }

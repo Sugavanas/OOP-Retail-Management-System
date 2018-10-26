@@ -19,4 +19,9 @@ public class Customers {
         for (Customer c : itemArrayList)
             System.out.println(c.saveString());
     }
+
+    public static Customer loadCustomer(int code)
+    {
+        return file.getByID(code);
+    }
 }

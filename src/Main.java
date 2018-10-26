@@ -1,5 +1,7 @@
+import db.Customers;
 import db.Items;
 import db.Staffs;
+import object.Customer;
 import object.Item;
 import object.Staff;
 
@@ -308,9 +310,12 @@ public class Main {
                     mainMenu();
                     break;
                 case 1:
-
+                    printCustomerAdd();
                     break;
                 case 2:
+                    printCustomerCheck();
+                    break;
+                case 3:
 
                     break;
                 default:
@@ -434,7 +439,7 @@ public class Main {
 
     public static void printItemDetails()
     {
-        System.out.println("Enter ID of item to be added: ");
+        System.out.println("Enter ID of item to be retrieved: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
 
@@ -468,6 +473,41 @@ public class Main {
         System.out.printf("Item name: %s\nItem stock: %s", i.getName(), i.getStockAvailable());
 
         showModifyStockMenu();
+    }
+
+    public static void printCustomerAdd()
+    {
+        System.out.println("Creating new customer: ");
+        int code;
+        String First_name, Last_name, mobile_number;
+
+        System.out.print("Enter customer code: ");
+        code = input.nextInt();
+
+        System.out.print("Enter customer first name: ");
+        First_name = input.next();
+
+        System.out.print("Enter customer last name: ");
+        Last_name = input.next();
+
+        System.out.print("Enter customer contact number: ");
+        mobile_number = input.next();
+
+        Customers.addCustomer(code, First_name, Last_name, mobile_number);
+
+        System.out.println("Customer details added.");
+
+        showCustomersMenu();
+    }
+
+    public static void printCustomerCheck()
+    {
+        System.out.print("Enter customer ID: ");
+        int code = input.nextInt();
+        Customer c = Customers.loadCustomer(code);
+        System.out.printf("Customer name: %s %s\nCustomer contact number: %s", c.getFirst_name(), c.getLast_name(), c.getMobile_number());
+
+        showCustomersMenu();
     }
 
     public static void divider()
