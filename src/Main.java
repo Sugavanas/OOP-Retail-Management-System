@@ -348,10 +348,10 @@ public class Main {
                     mainMenu();
                     break;
                 case 1:
-
+                    printStaffAdd();
                     break;
                 case 2:
-
+                    printStaffRemove();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -450,8 +450,43 @@ public class Main {
 
     static void printStaffAdd()
     {
+     int id;
+     String first_name;
+     String last_name;
+     String password;
+     Boolean isAdmin;
+
+     System.out.print("Enter Staff id: ");
+     id = input.nextInt();
+     System.out.print("Enter first name: ");
+     first_name = input.next();
+     System.out.print("Enter last name: ");
+     last_name = input.next();
+     System.out.print("Enter password: ");
+     password = input.next();
+     System.out.print("Are you an admin? (Y/N) ");
+     char value = input.next().charAt(0);
+     isAdmin = String.valueOf(value).toLowerCase().equals("y");
+
+
+     Staffs.addStaff(id, first_name, last_name, password, isAdmin);
+
+     System.out.println("Staff created");
+
+     showStaffMenu();
 
     }
+
+    public static void printStaffRemove()
+    {
+        System.out.print("Enter ID of Staff to be removed: ");
+        int id = input.nextInt();
+        Staffs.removeStaff(id);
+        System.out.println("Staff removed");
+        showStaffMenu();
+
+    }
+
 
     public static void printStockEdit()
     {

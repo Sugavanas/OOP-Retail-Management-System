@@ -16,6 +16,14 @@ public class Staffs
         file.insert(staff);
     }
 
+    public static void removeStaff(int id)
+    {
+        Staff s = file.getByID(id);
+        file.delete(s);
+    }
+
+    public static void editStaff(Staff s) {file.update(s);}
+
     public static Boolean hasStaffs()
     {
         if(file.read().size() != 0)
