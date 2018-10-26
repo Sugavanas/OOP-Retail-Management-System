@@ -92,5 +92,3 @@ nbdist/
 # End of https://www.gitignore.io/api/netbeans,intellij
 
 data/*
-.idea/misc.xml
-.idea/misc.xml
