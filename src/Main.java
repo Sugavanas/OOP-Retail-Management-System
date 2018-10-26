@@ -67,16 +67,18 @@ public class Main {
 
     public static void firstLaunch()
     {
-        String name, password;
+        String first_name, last_name, password;
 
         System.out.println("Welcome, create a new staff login: ");
 
-        System.out.println("Enter Staff Name: ");
-        name = input.nextLine();
+        System.out.println("Enter Staff First Name: ");
+        first_name = input.nextLine();
+        System.out.println("Enter Staff Last Name: ");
+        last_name = input.nextLine();
         System.out.println("Enter Password: ");
         password = input.nextLine();
 
-        Staffs.addStaff(1, name, password, true);
+        Staffs.addStaff(1, first_name, last_name, password, true);
 
         System.out.println("Staff created. You can now login using the details below.");
         System.out.println("Staff ID: " + 1);
@@ -405,7 +407,11 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    public static void divider()
+    static void printStaffAdd()
+    {
+
+    }
+    static void divider()
     {
         System.out.println("\n");
         System.out.println("======================================================================================");

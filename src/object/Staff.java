@@ -6,7 +6,9 @@ public class Staff extends Objects
 {
     private int id;
 
-    private String name;
+    private String first_name;
+
+    private String last_name;
 
     private String password;
 
@@ -17,10 +19,11 @@ public class Staff extends Objects
         super(data);
     }
 
-    public Staff(int id, String name, String password, Boolean isAdmin)
+    public Staff(int id, String first_name, String last_name, String password, Boolean isAdmin)
     {
         this.id = id;
-        this.name = name;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.password = password;
         this.isAdmin = isAdmin;
     }
@@ -31,9 +34,10 @@ public class Staff extends Objects
         try {
             String[] parts = data.split(";");
             this.id = Integer.valueOf(parts[0]);
-            this.name = parts[1];
-            this.password =  parts[2];
-            this.isAdmin = (parts[3]).equals("1");
+            this.first_name = parts[1];
+            this.last_name = parts[2];
+            this.password =  parts[3];
+            this.isAdmin = (parts[4]).equals("1");
         } catch (Exception ex) {
             System.out.println("Error Loading."); //TODO log error
         }
@@ -42,7 +46,7 @@ public class Staff extends Objects
     @Override
     public String saveString()
     {
-        return String.format("%s;%s;%s;%s;", String.valueOf(id), name, password, (isAdmin ? "1" : "0"));
+        return String.format("%s;%s;%s;%s;%s;", String.valueOf(id), first_name, last_name, password, (isAdmin ? "1" : "0"));
     }
 
     @Override
@@ -51,14 +55,24 @@ public class Staff extends Objects
         return String.valueOf(id);
     }
 
-    public String getName()
+    public String getFirst_name()
     {
-        return name;
+        return first_name;
     }
 
-    public void setName(String name)
+    public void setFirst_name(String first_name)
     {
-        this.name = name;
+        this.first_name = first_name;
+    }
+
+    public String getLast_name()
+    {
+        return last_name;
+    }
+
+    public void setLast_name (String last_name)
+    {
+        this.last_name = last_name;
     }
 
     public String getPassword()

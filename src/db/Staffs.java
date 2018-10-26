@@ -9,9 +9,9 @@ public class Staffs
 {
     private static FileIO<Staff> file = new FileIO<>("staffs.dat", Staff.class);
 
-    public static void addStaff(int id, String name, String password, Boolean isAdmin)
+    public static void addStaff(int id, String first_name, String last_name, String password, Boolean isAdmin)
     {
-        Staff staff = new Staff(id, name, password, isAdmin);
+        Staff staff = new Staff(id, first_name, last_name, password, isAdmin);
 
         file.insert(staff);
     }
