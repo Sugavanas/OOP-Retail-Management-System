@@ -407,9 +407,9 @@ public class Main {
 
     public static void printStockEdit()
     {
-        System.out.println("Enter ID of item to be updated: ");
+        System.out.print("Enter ID of item to be updated: ");
         int code = input.nextInt();
-        System.out.println("Enter new stock amount: ");
+        System.out.print("Enter new stock amount: ");
         int newStock = input.nextInt();
         Items.updateStock(code, newStock);
         System.out.print("Stock updated. ");
@@ -419,7 +419,7 @@ public class Main {
 
     public static void printStockCheck()
     {
-        System.out.println("Enter ID of item to be checked: ");
+        System.out.print("Enter ID of item to be checked: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
         System.out.printf("Item name: %s\nItem stock: %s", i.getName(), i.getStockAvailable());
