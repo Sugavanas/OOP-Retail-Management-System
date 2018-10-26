@@ -289,7 +289,34 @@ public class Main {
 
     static void showCustomersMenu()
     {
+        divider();
+        System.out.println("1) Add customer\n" +
+                "2) Check customer details\n" +
+                "3) Modify Customer\n" +
+                "0) Go back");
 
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
     }
 
     static void showProfileMenu()
@@ -299,7 +326,32 @@ public class Main {
 
     static void showStaffMenu()
     {
+        System.out.println("1) Add Staff\n" +
+                "2) Remove staff\n" +
+                "0) Go back");
 
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
     }
 
     static void printItemAdd()
