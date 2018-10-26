@@ -204,7 +204,7 @@ public class Main {
                     showInventoryMenu();
                     break;
                 case 1:
-
+                    printItemDetails();
                     break;
                 case 2:
                     printItemAdd();
@@ -276,6 +276,17 @@ public class Main {
         Items.addItem(code, name, price, cost, stockAvaiable);
 
         System.out.println("Item Created.");
+
+        showModifyItemsMenu();
+    }
+
+    public static void printItemDetails()
+    {
+        System.out.print("Enter item ID: ");
+        int code = input.nextInt();
+        Item i = Items.loadItem(code);
+
+        System.out.printf("Item name: %s\nItem price: %s.2\nItem cost: %s.2\nStocks: %s\n" , i.getName(), i.getPrice(), i.getCost(), i.getStockAvailable());
 
         showModifyItemsMenu();
     }
