@@ -245,10 +245,10 @@ public class Main {
                     showInventoryMenu();
                     break;
                 case 1:
-
+                    printStockEdit();
                     break;
                 case 2:
-
+                    printStockCheck();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -389,7 +389,7 @@ public class Main {
 
     public static void printItemRemove()
     {
-        System.out.print("Enter ID of item to be removed: ");
+        System.out.println("Enter ID of item to be removed: ");
         int code = input.nextInt();
         Items.removeItem(code);
 
@@ -398,20 +398,46 @@ public class Main {
 
     public static void printItemDetails()
     {
-        System.out.print("Enter ID of item to be added: ");
+        System.out.println("Enter ID of item to be added: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
 
-        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\nStocks: %s\n" , i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()), i.getStockAvailable());
+        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n" , i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()));
 
         showModifyItemsMenu();
     }
 
+<<<<<<< HEAD
     static void printStaffAdd()
     {
 
     }
     static void divider()
+=======
+    public static void printStockEdit()
+    {
+        System.out.print("Enter ID of item to be updated: ");
+        int code = input.nextInt();
+        System.out.print("Enter new stock amount: ");
+        int newStock = input.nextInt();
+        Items.updateStock(code, newStock);
+        System.out.print("Stock updated. ");
+
+        showModifyStockMenu();
+    }
+
+    public static void printStockCheck()
+    {
+        System.out.print("Enter ID of item to be checked: ");
+        int code = input.nextInt();
+        Item i = Items.loadItem(code);
+        System.out.printf("Item name: %s\nItem stock: %s", i.getName(), i.getStockAvailable());
+
+        showModifyStockMenu();
+    }
+
+    public static void divider()
+>>>>>>> cbffd35d87b5c4547e34cb61358e1a57d7f3bb4b
     {
         System.out.println("\n");
         System.out.println("======================================================================================");
