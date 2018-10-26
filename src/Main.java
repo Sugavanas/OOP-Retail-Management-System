@@ -339,7 +339,7 @@ public class Main {
         int code = input.nextInt();
         Item i = Items.loadItem(code);
 
-        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\nStocks: %s\n" , i.getName(), i.getPrice(), i.getCost(), i.getStockAvailable());
+        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\nStocks: %s\n" , i.getName(), String.format("%2f", i.getPrice()), String.format("%2f", i.getCost()), i.getStockAvailable());
 
         showModifyItemsMenu();
     }
