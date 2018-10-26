@@ -226,12 +226,64 @@ public class Main {
 
     static void showModifyStockMenu()
     {
+        divider();
+        System.out.println("1) Edit stock of item\n" +
+                           "2) Check stock\n" +
+                           "0) Go back");
 
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    showInventoryMenu();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
     }
 
     static void showBillingMenu()
     {
+        divider();
+        System.out.println("1) Add new bill\n" +
+                "2) Check bill\n" +
+                "0) Go back");
 
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch(option)
+            {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        }while(option == -1);
     }
 
     static void showCustomersMenu()
