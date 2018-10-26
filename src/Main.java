@@ -316,7 +316,7 @@ public class Main {
                     printCustomerCheck();
                     break;
                 case 3:
-
+                    printCustomerModify();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -543,6 +543,39 @@ public class Main {
         System.out.printf("Customer name: %s %s\nCustomer contact number: %s", c.getFirst_name(), c.getLast_name(), c.getMobile_number());
 
         showCustomersMenu();
+    }
+
+    public static void printCustomerModify()
+    {
+        System.out.print("Enter customer ID: ");
+        int code = input.nextInt();
+        String First_name, Last_name, mobile_number;
+
+        Customer c = Customers.loadCustomer(code);
+
+        System.out.println("Modifying customer " + code + " + (Enter 0 to not change value)");
+
+        System.out.print("Enter customer first name [" + c.getFirst_name() + "]: ");
+        First_name = input.next();
+        First_name = First_name.equals("0") ? c.getFirst_name() : First_name;
+
+        System.out.print("Enter customer last name [" + c.getLast_name() + "]: ");
+        Last_name = input.next();
+        Last_name = Last_name.equals("0") ? c.getLast_name() : Last_name;
+
+        System.out.print("Enter customer contact number [" + c.getMobile_number() + "]: ");
+        mobile_number = input.next();
+        mobile_number = mobile_number.equals("0") ? c.getMobile_number() : mobile_number;
+
+        c.setFirst_name(First_name);
+        c.setLast_name(Last_name);
+        c.setMobile_number(mobile_number);
+        Customers.editCustomer(c);
+
+        System.out.println("Customer details updated. ");
+
+        showCustomersMenu();
+
     }
 
     public static void divider()

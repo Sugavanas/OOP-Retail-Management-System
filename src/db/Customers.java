@@ -24,4 +24,9 @@ public class Customers {
     {
         return file.getByID(code);
     }
+
+    public static void editCustomer(Customer i)
+    {
+        file.update(i);
+    }
 }
