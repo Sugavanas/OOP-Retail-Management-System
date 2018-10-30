@@ -285,7 +285,7 @@ public class Main {
                     printBillingAdd();
                     break;
                 case 2:
-
+                    printShowBilling();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -293,6 +293,27 @@ public class Main {
                     break;
             }
         }while(option == -1);
+    }
+
+    static void printShowBilling ()
+    {
+        int order_id;
+        System.out.println("Enter order ID: ");
+        order_id = input.nextInt();
+        Order o = Orders.loadOrder(order_id);
+
+        System.out.println("Customer ID: " + o.getCustomer_id());
+        ArrayList<Item> itemArrayList = o.getItems();
+        for (int i =0; i < itemArrayList.size(); i++)
+        {
+            System.out.println("Name: " + itemArrayList.get(i).getName());
+            System.out.println("Price: " + itemArrayList.get(i).getPrice());
+
+        }
+        System.out.println("Total: " + o.getTotal());
+        System.out.println("Discount: " + o.getDiscount() );
+        System.out.println("Grand Total: " + o.getGrand_total());
+
     }
 
     static void printBillingAdd ()

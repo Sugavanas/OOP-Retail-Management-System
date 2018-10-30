@@ -39,4 +39,10 @@ public class Orders {
         else
             return 1;
     }
+
+    public static Order loadOrder(int id)
+    {
+        return file.getByID(id);
+    }
+
 }
