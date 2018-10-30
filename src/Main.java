@@ -302,7 +302,7 @@ public class Main {
         ArrayList<Integer> itemCodes = new ArrayList<Integer>();
         ArrayList<Integer> itemQtys = new ArrayList<Integer>();
 
-        System.out.print("Enter your ID: ");
+        System.out.print("Enter customer ID (0 for guest: ");
         customerID = input.nextInt();
 
         do {

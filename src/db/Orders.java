@@ -1,6 +1,7 @@
 package db;
 
 import classes.FileIO;
+import object.Item;
 import object.Order;
 
 import java.util.ArrayList;
@@ -11,7 +12,15 @@ public class Orders {
 
     public static void addOrder(int[] item_codes, int[] item_qty, int customer_id, int staff_id, double discount_percentage)
     {
-        Order order = new Order(id, item_codes, item_qty, customer_id, staff_id, getDate(), total, discount, grand_total);
+        double total = 0;
+        for (int i = 0; i<item_codes.length; i++){
+            Item item = Items.loadItem(item_codes [i]);
+            total += item.getPrice() * item_qty [i];
+        }
+        double discount = (discount_percentage/100)*total;
+        double grand_total = total - discount;
+        Order order = new Order(getNextID(), item_codes, item_qty, customer_id, staff_id, getDate(), total, discount, grand_total);
+
 
         file.insert(order);
     }
