@@ -7,6 +7,7 @@ import object.Item;
 import object.Order;
 import object.Staff;
 
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -297,6 +298,7 @@ public class Main {
 
     static void printShowBilling ()
     {
+        divider();
         int order_id;
         System.out.println("Enter order ID: ");
         order_id = input.nextInt();
@@ -314,30 +316,48 @@ public class Main {
         System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
         System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
 
-        System.out.println("Press enter to go back.");
-        input.next();
+        waitForEnter();
         showBillingMenu();
     }
 
     static void printBillingAdd ()
     {
+        divider();
         int customerID;
         int itemCode, itemQty;
         double discount;
 
-        ArrayList<Integer> itemCodes = new ArrayList<Integer>();
-        ArrayList<Integer> itemQtys = new ArrayList<Integer>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
+        ArrayList<Integer> itemQtys = new ArrayList<>();
 
-        System.out.print("Enter customer ID (0 for guest: ");
-        customerID = input.nextInt();
+        Customer customer = null;
+        do {
+            System.out.print("Enter customer ID (0 for Guest): ");
+            customerID = input.nextInt();
+            customer = Customers.loadCustomer(customerID);
+        }while(customer == null);
+
 
         do {
             System.out.print("Enter the item code: (Enter 0 to exit)");
             itemCode = input.nextInt();
             if (itemCode != 0) {
-                itemCodes.add(itemCode);
-            } else
+                Item item = Items.loadItem(itemCode); //Load item to check if code exists
+                if(item != null)
+                {
+                    itemArrayList.add(item);
+                }
+                else
+                {
+                    System.out.println("Invalid item code.");
+                    continue;
+                }
+            }
+            else
+            {
+                System.out.println();
                 break;
+            }
 
             System.out.print("Enter the item qty:");
             itemQty = input.nextInt();
@@ -348,21 +368,20 @@ public class Main {
         System.out.print("Enter discount percentage: ");
         discount = input.nextDouble();
 
-        int[] itemCodesArr = new int[itemCodes.size()];
         int[] itemQtyArr = new int[itemQtys.size()];
-        for (int i = 0; i < itemCodesArr.length; i++) {
-            itemCodesArr[i] = itemCodes.get(i);
+        for (int i = 0; i < itemQtyArr.length; i++) {
             itemQtyArr[i] = itemQtys.get(i);
         }
 
-        Order o = Orders.addOrder(itemCodesArr, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
+        Order o = Orders.addOrder(itemArrayList, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
         divider();
         System.out.println("Order ID " + o.getID());
         System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
         System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
         System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
-        System.out.println("Press enter to go back.");
-        input.next();
+
+        waitForEnter();
+
         showBillingMenu();
     }
 
@@ -693,6 +712,16 @@ public class Main {
         System.out.println("\n");
         System.out.println("======================================================================================");
         System.out.println();
+    }
+
+    private static void waitForEnter()
+    {
+        System.out.println("\n\nPress enter to continue...");
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     static void exit()

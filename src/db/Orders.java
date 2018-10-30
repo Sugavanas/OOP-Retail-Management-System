@@ -10,17 +10,17 @@ import java.util.Date;
 public class Orders {
     private static FileIO<Order> file = new FileIO<>("orders.dat", Order.class);
 
-    public static Order addOrder(int[] item_codes, int[] item_qty, int customer_id, int staff_id, double discount_percentage)
+    public static Order addOrder(ArrayList<Item> itemArrayList, int[] item_qty, int customer_id, int staff_id, double discount_percentage)
     {
         double total = 0;
-        for (int i = 0; i<item_codes.length; i++){
-            Item item = Items.loadItem(item_codes [i]);
+        for (int i = 0; i<item_qty.length; i++){
+            Item item = itemArrayList.get(i);
             total += item.getPrice() * item_qty [i];
         }
         double discount = (discount_percentage/100)*total;
         double grand_total = total - discount;
-        Order order = new Order(getNextID(), item_codes, item_qty, customer_id, staff_id, getDate(), total, discount, grand_total);
-
+        Order order = new Order(getNextID(), null, item_qty, customer_id, staff_id, getDate(), total, discount, grand_total);
+        order.setItems(itemArrayList);
         file.insert(order);
 
         return order;

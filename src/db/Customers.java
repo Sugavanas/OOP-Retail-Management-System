@@ -20,9 +20,12 @@ public class Customers {
             System.out.println(c.saveString());
     }
 
-    public static Customer loadCustomer(int code)
+    public static Customer loadCustomer(int id)
     {
-        return file.getByID(code);
+        if(id == 0)
+            return new Customer(0, "Guest", "", "");
+        else
+            return file.getByID(id);
     }
 
     public static void editCustomer(Customer i)
