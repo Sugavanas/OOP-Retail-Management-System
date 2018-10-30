@@ -3,6 +3,7 @@ package db;
 import classes.FileIO;
 import object.Order;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Orders {
@@ -18,5 +19,14 @@ public class Orders {
     private static Date getDate()
     {
         return new Date();
+    }
+
+    private static int getNextID()
+    {
+        ArrayList<Order> orderArrayList = file.read();
+        if(orderArrayList.size() > 1)
+            return Integer.valueOf(orderArrayList.get(orderArrayList.size() - 1).getID()) + 1;
+        else
+            return 1;
     }
 }
