@@ -279,7 +279,7 @@ public class Main {
                     mainMenu();
                     break;
                 case 1:
-
+                    printBillingAdd();
                     break;
                 case 2:
 
