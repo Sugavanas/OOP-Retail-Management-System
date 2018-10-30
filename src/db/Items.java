@@ -42,10 +42,12 @@ public class Items
         return file.getByID(id).getStockAvailable();
     }
 
-    public static void updateStock(int id, int newStock)
+    public static void updateStock(int id, int addStock)
     {
         Item i = file.getByID(id);
-        i.setStockAvailable(newStock);
+
+        i.setStockAvailable(i.getStockAvailable() + addStock);
+
         file.update(i);
     }
 }

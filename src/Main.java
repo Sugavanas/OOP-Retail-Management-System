@@ -168,7 +168,7 @@ public class Main
         divider();
         System.out.println("1) Items\n" +
                 "2) Item Stock\n" +
-                " 0) Go back");
+                "0) Go back");
 
         int option;
         do {
@@ -381,7 +381,7 @@ public class Main
         String name;
         double price;
         double cost;
-        int stockAvaiable;
+        int stockAvailable;
 
         System.out.print("Enter item code: ");
         code = input.nextInt();
@@ -396,9 +396,9 @@ public class Main
         cost = input.nextDouble();
 
         System.out.print("Enter item stock quantity: ");
-        stockAvaiable = input.nextInt();
+        stockAvailable = input.nextInt();
 
-        Items.addItem(code, name, price, cost, stockAvaiable);
+        Items.addItem(code, name, price, cost, stockAvailable);
 
         System.out.println("Item Created.");
 
@@ -452,9 +452,9 @@ public class Main
     {
         System.out.print("Enter ID of item to be updated: ");
         int code = input.nextInt();
-        System.out.print("Enter new stock amount: ");
-        int newStock = input.nextInt();
-        Items.updateStock(code, newStock);
+        System.out.print("Enter stock to add amount: ");
+        int addStock = input.nextInt();
+        Items.updateStock(code, addStock);
         System.out.print("Stock updated. ");
 
         showModifyStockMenu();

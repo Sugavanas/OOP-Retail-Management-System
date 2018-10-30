@@ -17,6 +17,8 @@ public class Orders
         for (int i = 0; i < item_qty.length; i++) {
             Item item = itemArrayList.get(i);
             total += item.getPrice() * item_qty[i];
+
+            Items.updateStock(item.getCode(), -(item_qty[i]));
         }
         double discount = (discount_percentage / 100) * total;
         double grand_total = total - discount;
