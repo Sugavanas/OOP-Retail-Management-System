@@ -5,6 +5,7 @@ import object.Customer;
 import object.Item;
 import object.Staff;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -278,7 +279,7 @@ public class Main {
                     mainMenu();
                     break;
                 case 1:
-
+                    printBillingAdd();
                     break;
                 case 2:
 
@@ -289,6 +290,25 @@ public class Main {
                     break;
             }
         }while(option == -1);
+    }
+
+    static void printBillingAdd ()
+    {
+        int customerID;
+        int itemCode;
+        ArrayList<Integer> itemCodes = new ArrayList<Integer>();
+
+        System.out.println("Enter your ID: ");
+        customerID = input.nextInt();
+
+        do {
+            System.out.println("Enter the item code: (Enter 0 to exit)");
+            itemCode = input.nextInt();
+            if (itemCode != 0){
+                itemCodes.add(itemCode);
+            }
+        }while (itemCode != 0);
+
     }
 
     static void showCustomersMenu()
@@ -333,6 +353,10 @@ public class Main {
 
     static void showStaffMenu()
     {
+        if(!currentStaff.getIsAdmin()) {
+            System.out.println("You do not have permission to access this.");
+            mainMenu();
+        }
         System.out.println("1) Add Staff\n" +
                 "2) Remove staff\n" +
                 "0) Go back");
@@ -408,7 +432,7 @@ public class Main {
         String name;
         double price;
         double cost;
-        int stockAvaiable;
+
 
 
         Item i = Items.loadItem(code);
@@ -464,7 +488,7 @@ public class Main {
      last_name = input.next();
      System.out.print("Enter password: ");
      password = input.next();
-     System.out.print("Are you an admin? (Y/N) ");
+     System.out.print("Is this user an admin? (Y/N) ");
      char value = input.next().charAt(0);
      isAdmin = String.valueOf(value).toLowerCase().equals("y");
 
