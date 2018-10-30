@@ -296,10 +296,11 @@ public class Main {
     static void printBillingAdd ()
     {
         int customerID;
-        int itemCode;
+        int itemCode, itemQty;
         double discount;
 
         ArrayList<Integer> itemCodes = new ArrayList<Integer>();
+        ArrayList<Integer> itemQtys = new ArrayList<Integer>();
 
         System.out.print("Enter your ID: ");
         customerID = input.nextInt();
@@ -310,18 +311,25 @@ public class Main {
             if (itemCode != 0){
                 itemCodes.add(itemCode);
             }
+
+            System.out.print("Enter the item qty:");
+            itemQty = input.nextInt();
+            itemQtys.add(itemQty);
+
         } while (itemCode != 0);
 
         System.out.print("Enter discount percentage: ");
         discount = input.nextDouble();
 
         int[] itemCodesArr = new int[itemCodes.size()];
+        int[] itemQtyArr = new int[itemQtys.size()];
         for (int i=0; i < itemCodesArr.length; i++)
         {
             itemCodesArr[i] = itemCodes.get(i);
+            itemQtyArr[i] = itemQtys.get(i);
         }
 
-        Orders.addOrder(itemCodesArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
+        Orders.addOrder(itemCodesArr, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
 
     }
 

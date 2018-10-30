@@ -11,6 +11,7 @@ public class Order extends Objects
     private int id;
 
     private int[] item_codes;
+    private int[] item_qty;
 
     private int customer_id;
 
@@ -29,17 +30,17 @@ public class Order extends Objects
         super(data);
     }
 
-    public Order(int id, int[] item_codes, int customer_id, int staff_id, Date date, double total, double discount, double grand_total)
+    public Order(int id, int[] item_codes, int[] item_qty, int customer_id, int staff_id, Date date, double total, double discount, double grand_total)
     {
         this.id = id;
         this.item_codes = item_codes;
+        this.item_qty = item_qty;
         this.customer_id = customer_id;
         this.staff_id = staff_id;
         this.date = date;
         this.total = total;
         this.discount = discount;
         this.grand_total = grand_total;
-
     }
 
     @Override
@@ -54,17 +55,22 @@ public class Order extends Objects
             for(int i = 0; i<strCodes.length; i++)
                 this.item_codes[i] = Integer.valueOf(strCodes[i]);
 
-            this.customer_id = Integer.valueOf(parts[2]);
+            String[] strQty = parts[2].split(",");
+            this.item_qty = new int[strQty.length];
+            for(int i = 0; i<strQty.length; i++)
+                this.item_qty[i] = Integer.valueOf(strQty[i]);
 
-            this.staff_id = Integer.valueOf(parts[3]);
+            this.customer_id = Integer.valueOf(parts[3]);
 
-            this.date = new Date(Long.valueOf(parts[4]));
+            this.staff_id = Integer.valueOf(parts[4]);
 
-            this.total = Double.valueOf(parts[5]);
+            this.date = new Date(Long.valueOf(parts[5]));
 
-            this.discount = Double.valueOf(parts[6]);
+            this.total = Double.valueOf(parts[6]);
 
-            this.grand_total = Double.valueOf(parts[7]);
+            this.discount = Double.valueOf(parts[7]);
+
+            this.grand_total = Double.valueOf(parts[8]);
         } catch (Exception ex) {
             System.out.println("Error Loading."); //TODO log error
         }
@@ -73,7 +79,7 @@ public class Order extends Objects
     @Override
     public String saveString()
     {
-        return String.format("%s;%s;%s;%s;%s;s;s;s;", String.valueOf(id), getItemIds(), String.valueOf(customer_id),
+        return String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;", String.valueOf(id), getItemIds(), getItemQty(), String.valueOf(customer_id),
                 String.valueOf(staff_id), String.valueOf(date.getTime()), String.valueOf(total),
                 String.valueOf(discount), String.valueOf(grand_total));
     }
@@ -174,7 +180,19 @@ public class Order extends Objects
         {
             result += String.valueOf(i) + ",";
         }
-        result.substring(0, result.length() - 1); //remove last comma
+        result = result.substring(0, result.length() - 1); //remove last comma
+
+        return result;
+    }
+
+    private String getItemQty()
+    {
+        String result = "";
+        for(int i : item_qty)
+        {
+            result += String.valueOf(i) + ",";
+        }
+        result = result.substring(0, result.length() - 1); //remove last comma
 
         return result;
     }
