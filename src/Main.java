@@ -328,7 +328,7 @@ public class Main {
 
     static void showProfileMenu()
     {
-
+        printProfileEdit();
     }
 
     static void showStaffMenu()
@@ -575,6 +575,37 @@ public class Main {
         System.out.println("Customer details updated. ");
 
         showCustomersMenu();
+
+    }
+
+    public static void printProfileEdit()
+    {
+        String first_name;
+        String last_name;
+        String password;
+
+        System.out.print("Enter first name [" + currentStaff.getFirst_name() + "]: ");
+        first_name = input.next();
+        first_name = first_name.equals("0") ? currentStaff.getFirst_name() : first_name;
+
+        System.out.print("Enter last name [" + currentStaff.getLast_name() + "]: ");
+        last_name = input.next();
+        last_name = last_name.equals("0") ? currentStaff.getLast_name() : last_name;
+
+        System.out.print("Enter password [" + currentStaff.getPassword() + "]: ");
+        password = input.next();
+        password = password.equals("0") ? currentStaff.getPassword() : password;
+
+        currentStaff.setFirst_name(first_name);
+        currentStaff.setLast_name(last_name);
+        currentStaff.setPassword(password);
+
+        Staffs.editStaff(currentStaff);
+
+        System.out.println("Profile details updated. ");
+
+        mainMenu();
+
 
     }
 
