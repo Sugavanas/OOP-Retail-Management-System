@@ -4,8 +4,10 @@ import db.Orders;
 import db.Staffs;
 import object.Customer;
 import object.Item;
+import object.Order;
 import object.Staff;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -308,9 +310,10 @@ public class Main {
         do {
             System.out.print("Enter the item code: (Enter 0 to exit)");
             itemCode = input.nextInt();
-            if (itemCode != 0){
+            if (itemCode != 0) {
                 itemCodes.add(itemCode);
-            }
+            } else
+                break;
 
             System.out.print("Enter the item qty:");
             itemQty = input.nextInt();
@@ -323,14 +326,18 @@ public class Main {
 
         int[] itemCodesArr = new int[itemCodes.size()];
         int[] itemQtyArr = new int[itemQtys.size()];
-        for (int i=0; i < itemCodesArr.length; i++)
-        {
+        for (int i = 0; i < itemCodesArr.length; i++) {
             itemCodesArr[i] = itemCodes.get(i);
             itemQtyArr[i] = itemQtys.get(i);
         }
 
-        Orders.addOrder(itemCodesArr, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
-
+        Order o = Orders.addOrder(itemCodesArr, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
+        divider();
+        System.out.println("Order ID " + o.getID());
+        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
+        System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
+        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
+        showBillingMenu();
     }
 
     static void showCustomersMenu()
