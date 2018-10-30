@@ -5,6 +5,7 @@ import object.Customer;
 import object.Item;
 import object.Staff;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -291,6 +292,25 @@ public class Main {
         }while(option == -1);
     }
 
+    static void printBillingAdd ()
+    {
+        int customerID;
+        int itemCode;
+        ArrayList<Integer> itemCodes = new ArrayList<Integer>();
+
+        System.out.println("Enter your ID: ");
+        customerID = input.nextInt();
+
+        do {
+            System.out.println("Enter the item code: (Enter 0 to exit)");
+            itemCode = input.nextInt();
+            if (itemCode != 0){
+                itemCodes.add(itemCode);
+            }
+        }while (itemCode != 0);
+
+    }
+
     static void showCustomersMenu()
     {
         divider();
@@ -408,7 +428,7 @@ public class Main {
         String name;
         double price;
         double cost;
-        int stockAvaiable;
+
 
 
         Item i = Items.loadItem(code);
