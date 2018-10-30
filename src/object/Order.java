@@ -32,13 +32,37 @@ public class Order extends Objects
     @Override
     public void loadFromString(String data)
     {
+        try {
+            String[] parts = data.split(";");
+            this.id = Integer.valueOf(parts[0]);
 
+            String[] strCodes = parts[1].split(",");
+            this.item_codes = new int[strCodes.length];
+            for(int i = 0; i<strCodes.length; i++)
+                this.item_codes[i] = Integer.valueOf(strCodes[i]);
+
+            this.customer_id = Integer.valueOf(parts[2]);
+
+            this.staff_id = Integer.valueOf(parts[3]);
+
+            this.date = new Date(Long.valueOf(parts[4]));
+
+            this.total = Double.valueOf(parts[5]);
+
+            this.discount = Double.valueOf(parts[6]);
+
+            this.grand_total = Double.valueOf(parts[7]);
+        } catch (Exception ex) {
+            System.out.println("Error Loading."); //TODO log error
+        }
     }
 
     @Override
     public String saveString()
     {
-        return null;
+        return String.format("%s;%s;%s;%s;%s;s;s;s;", String.valueOf(id), getItemIds(), String.valueOf(customer_id),
+                String.valueOf(staff_id), String.valueOf(date.getTime()), String.valueOf(total),
+                String.valueOf(discount), String.valueOf(grand_total));
     }
 
     @Override
@@ -128,5 +152,17 @@ public class Order extends Objects
     public void setGrand_total(double grand_total)
     {
         this.grand_total = grand_total;
+    }
+
+    private String getItemIds()
+    {
+        String result = "";
+        for(int i : item_codes)
+        {
+            result += String.valueOf(i) + ",";
+        }
+        result.substring(0, result.length() - 1); //remove last comma
+
+        return result;
     }
 }
