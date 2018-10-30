@@ -2,3 +2,5 @@ https://stackoverflow.com/questions/42069745/pass-class-type-as-parameter-to-use
 https://stackoverflow.com/questions/6241513/how-to-create-instance-of-a-class-with-the-parameters-in-the-constructor-using-r
 https://stackoverflow.com/questions/38433458/what-is-the-use-of-get-and-set-in-java-and-where-should-it-be-used : Why use get; set;
 https://stackoverflow.com/questions/1082580/how-to-build-jars-from-intellij-properly
+https://stackoverflow.com/questions/6032118/make-the-console-wait-for-a-user-input-to-close
+https://www.javatpoint.com/java-get-current-date

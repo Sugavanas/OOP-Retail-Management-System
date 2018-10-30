@@ -8,21 +8,21 @@ import object.Order;
 import object.Staff;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    static Scanner input;
+public class Main
+{
+    private static Scanner input;
 
-    static Staff currentStaff;
+    private static Staff currentStaff;
 
     public static void main(String[] args)
     {
         input = new Scanner(System.in);
 
         System.out.println("Retail Management System V1.0");
-        if(!Staffs.hasStaffs())
+        if (!Staffs.hasStaffs())
             firstLaunch();
         else
             loginScreen();
@@ -72,7 +72,7 @@ public class Main {
          */
     }
 
-    public static void firstLaunch()
+    private static void firstLaunch()
     {
         String first_name, last_name, password;
 
@@ -95,7 +95,7 @@ public class Main {
 
     }
 
-    public static void loginScreen()
+    private static void loginScreen()
     {
         int id;
         String password;
@@ -105,38 +105,37 @@ public class Main {
             System.out.print("Staff ID: ");
             id = input.nextInt();
 
-            if(id == 0)
+            if (id == 0)
                 return;
 
             System.out.print("Password: ");
             password = input.next();
 
             currentStaff = Staffs.Login(id, password);
-            if(currentStaff == null)
+            if (currentStaff == null)
                 System.out.println("Invalid Login");
-        }while(currentStaff == null);
+        } while (currentStaff == null);
 
         mainMenu();
     }
 
-    public static void mainMenu()
+    private static void mainMenu()
     {
         divider();
         System.out.println("Retail Management System (RMS) v1.0");
         System.out.println("Main Menu");
         System.out.println("1) Inventory Control\n" +
-                            "2) Billing\n" +
-                            "3) Customers\n" +
-                            "4) Edit my profile\n" +
-                            (currentStaff.getIsAdmin() ? "5) Add/Remove staffs\n" : "") +
-                            "0) Exit");
+                "2) Billing\n" +
+                "3) Customers\n" +
+                "4) Edit my profile\n" +
+                (currentStaff.getIsAdmin() ? "5) Add/Remove staffs\n" : "") +
+                "0) Exit");
         int option;
         do {
             System.out.print("Choose option: ");
             option = input.nextInt();
 
-            switch(option)
-            {
+            switch (option) {
                 case 0:
                     exit();
                     break;
@@ -160,24 +159,23 @@ public class Main {
                     option = -1;
                     break;
             }
-        }while(option == -1);
+        } while (option == -1);
 
     }
 
-    static void showInventoryMenu()
+    private static void showInventoryMenu()
     {
         divider();
         System.out.println("1) Items\n" +
-                            "2) Item Stock\n" +
-                            " 0) Go back");
+                "2) Item Stock\n" +
+                " 0) Go back");
 
         int option;
         do {
             System.out.print("Choose option: ");
             option = input.nextInt();
 
-            switch(option)
-            {
+            switch (option) {
                 case 0:
                     mainMenu();
                     break;
@@ -192,10 +190,112 @@ public class Main {
                     option = -1;
                     break;
             }
-        }while(option == -1);
+        } while (option == -1);
     }
 
-    static void showModifyItemsMenu()
+    private static void showBillingMenu()
+    {
+        divider();
+        System.out.println("1) Add new bill\n" +
+                "2) Check bill\n" +
+                "0) Go back");
+
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch (option) {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+                    printBillingAdd();
+                    break;
+                case 2:
+                    printShowBilling();
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        } while (option == -1);
+    }
+
+    private static void showCustomersMenu()
+    {
+        divider();
+        System.out.println("1) Add customer\n" +
+                "2) Check customer details\n" +
+                "3) Modify Customer\n" +
+                "0) Go back");
+
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch (option) {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+                    printCustomerAdd();
+                    break;
+                case 2:
+                    printCustomerCheck();
+                    break;
+                case 3:
+                    printCustomerModify();
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        } while (option == -1);
+    }
+
+    private static void showProfileMenu()
+    {
+        printProfileEdit();
+    }
+
+    private static void showStaffMenu()
+    {
+        if (!currentStaff.getIsAdmin()) {
+            System.out.println("You do not have permission to access this.");
+            mainMenu();
+        }
+        System.out.println("1) Add Staff\n" +
+                "2) Remove staff\n" +
+                "0) Go back");
+
+        int option;
+        do {
+            System.out.print("Choose option: ");
+            option = input.nextInt();
+
+            switch (option) {
+                case 0:
+                    mainMenu();
+                    break;
+                case 1:
+                    printStaffAdd();
+                    break;
+                case 2:
+                    printStaffRemove();
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    option = -1;
+                    break;
+            }
+        } while (option == -1);
+    }
+
+    private static void showModifyItemsMenu()
     {
         divider();
         System.out.println("1) Get item details \n" +
@@ -208,8 +308,7 @@ public class Main {
             System.out.print("Choose option: ");
             option = input.nextInt();
 
-            switch(option)
-            {
+            switch (option) {
                 case 0:
                     showInventoryMenu();
                     break;
@@ -230,24 +329,23 @@ public class Main {
                     option = -1;
                     break;
             }
-        }while(option == -1);
+        } while (option == -1);
 
     }
 
-    static void showModifyStockMenu()
+    private static void showModifyStockMenu()
     {
         divider();
         System.out.println("1) Edit stock of item\n" +
-                           "2) Check stock\n" +
-                           "0) Go back");
+                "2) Check stock\n" +
+                "0) Go back");
 
         int option;
         do {
             System.out.print("Choose option: ");
             option = input.nextInt();
 
-            switch(option)
-            {
+            switch (option) {
                 case 0:
                     showInventoryMenu();
                     break;
@@ -262,204 +360,21 @@ public class Main {
                     option = -1;
                     break;
             }
-        }while(option == -1);
+        } while (option == -1);
     }
 
-    static void showBillingMenu()
+    private static void printItemDetails()
     {
-        divider();
-        System.out.println("1) Add new bill\n" +
-                "2) Check bill\n" +
-                "0) Go back");
+        System.out.println("Enter ID of item to be retrieved: ");
+        int code = input.nextInt();
+        Item i = Items.loadItem(code);
 
-        int option;
-        do {
-            System.out.print("Choose option: ");
-            option = input.nextInt();
+        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n", i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()));
 
-            switch(option)
-            {
-                case 0:
-                    mainMenu();
-                    break;
-                case 1:
-                    printBillingAdd();
-                    break;
-                case 2:
-                    printShowBilling();
-                    break;
-                default:
-                    System.out.println("Invalid option.");
-                    option = -1;
-                    break;
-            }
-        }while(option == -1);
+        showModifyItemsMenu();
     }
 
-    static void printShowBilling ()
-    {
-        divider();
-        int order_id;
-        System.out.println("Enter order ID: ");
-        order_id = input.nextInt();
-        Order o = Orders.loadOrder(order_id);
-
-        System.out.println("Customer ID: " + o.getCustomer_id());
-        ArrayList<Item> itemArrayList = o.getItems();
-        for (int i =0; i < itemArrayList.size(); i++)
-        {
-            System.out.println(itemArrayList.get(i).getName() + "\tRM" + String.format("%.2f", itemArrayList.get(i).getPrice() * o.getItem_qty()[i]));
-            System.out.println("\t" + o.getItem_qty()[i] + " x RM" + String.format("%.2f", itemArrayList.get(i).getPrice()));
-            System.out.println("--------------------------------");
-        }
-        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
-        System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
-        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
-
-        waitForEnter();
-        showBillingMenu();
-    }
-
-    static void printBillingAdd ()
-    {
-        divider();
-        int customerID;
-        int itemCode, itemQty;
-        double discount;
-
-        ArrayList<Item> itemArrayList = new ArrayList<>();
-        ArrayList<Integer> itemQtys = new ArrayList<>();
-
-        Customer customer = null;
-        do {
-            System.out.print("Enter customer ID (0 for Guest): ");
-            customerID = input.nextInt();
-            customer = Customers.loadCustomer(customerID);
-        }while(customer == null);
-
-
-        do {
-            System.out.print("Enter the item code: (Enter 0 to exit)");
-            itemCode = input.nextInt();
-            if (itemCode != 0) {
-                Item item = Items.loadItem(itemCode); //Load item to check if code exists
-                if(item != null)
-                {
-                    itemArrayList.add(item);
-                }
-                else
-                {
-                    System.out.println("Invalid item code.");
-                    continue;
-                }
-            }
-            else
-            {
-                System.out.println();
-                break;
-            }
-
-            System.out.print("Enter the item qty:");
-            itemQty = input.nextInt();
-            itemQtys.add(itemQty);
-
-        } while (itemCode != 0);
-
-        System.out.print("Enter discount percentage: ");
-        discount = input.nextDouble();
-
-        int[] itemQtyArr = new int[itemQtys.size()];
-        for (int i = 0; i < itemQtyArr.length; i++) {
-            itemQtyArr[i] = itemQtys.get(i);
-        }
-
-        Order o = Orders.addOrder(itemArrayList, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
-        divider();
-        System.out.println("Order ID " + o.getID());
-        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
-        System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
-        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
-
-        waitForEnter();
-
-        showBillingMenu();
-    }
-
-    static void showCustomersMenu()
-    {
-        divider();
-        System.out.println("1) Add customer\n" +
-                "2) Check customer details\n" +
-                "3) Modify Customer\n" +
-                "0) Go back");
-
-        int option;
-        do {
-            System.out.print("Choose option: ");
-            option = input.nextInt();
-
-            switch(option)
-            {
-                case 0:
-                    mainMenu();
-                    break;
-                case 1:
-                    printCustomerAdd();
-                    break;
-                case 2:
-                    printCustomerCheck();
-                    break;
-                case 3:
-                    printCustomerModify();
-                    break;
-                default:
-                    System.out.println("Invalid option.");
-                    option = -1;
-                    break;
-            }
-        }while(option == -1);
-    }
-
-    static void showProfileMenu()
-    {
-        printProfileEdit();
-    }
-
-    static void showStaffMenu()
-    {
-        if(!currentStaff.getIsAdmin()) {
-            System.out.println("You do not have permission to access this.");
-            mainMenu();
-        }
-        System.out.println("1) Add Staff\n" +
-                "2) Remove staff\n" +
-                "0) Go back");
-
-        int option;
-        do {
-            System.out.print("Choose option: ");
-            option = input.nextInt();
-
-            switch(option)
-            {
-                case 0:
-                    mainMenu();
-                    break;
-                case 1:
-                    printStaffAdd();
-                    break;
-                case 2:
-                    printStaffRemove();
-                    break;
-                default:
-                    System.out.println("Invalid option.");
-                    option = -1;
-                    break;
-            }
-        }while(option == -1);
-    }
-
-    static void printItemAdd()
+    private static void printItemAdd()
     {
         System.out.println("Creating new item: ");
         int code;
@@ -490,7 +405,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    static void printItemRemove()
+    private static void printItemRemove()
     {
         System.out.println("Enter ID of item to be removed: ");
         int code = input.nextInt();
@@ -499,7 +414,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    static void printItemEdit()
+    private static void printItemEdit()
     {
         System.out.print("Enter code of item to be edit: ");
         int code = input.nextInt();
@@ -507,21 +422,19 @@ public class Main {
         double price;
         double cost;
 
-
-
         Item i = Items.loadItem(code);
 
         System.out.println("Modifying item " + code + " (Enter 0 to not change value)");
 
-        System.out.print("Enter item name [" + i.getName() +"]: ");
+        System.out.print("Enter item name [" + i.getName() + "]: ");
         name = input.next();
         name = name.equals("0") ? i.getName() : name;
 
-        System.out.print("Enter item price [" + i.getPrice() +"]:");
+        System.out.print("Enter item price [" + i.getPrice() + "]:");
         price = input.nextDouble();
         price = price == 0 ? i.getPrice() : price;
 
-        System.out.print("Enter item cost [" + i.getCost() +"]:");
+        System.out.print("Enter item cost [" + i.getCost() + "]:");
         cost = input.nextDouble();
         cost = cost == 0 ? i.getCost() : cost;
 
@@ -535,58 +448,7 @@ public class Main {
         showModifyItemsMenu();
     }
 
-    static void printItemDetails()
-    {
-        System.out.println("Enter ID of item to be retrieved: ");
-        int code = input.nextInt();
-        Item i = Items.loadItem(code);
-
-        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n" , i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()));
-
-        showModifyItemsMenu();
-    }
-
-    static void printStaffAdd()
-    {
-     int id;
-     String first_name;
-     String last_name;
-     String password;
-     Boolean isAdmin;
-
-     System.out.print("Enter Staff id: ");
-     id = input.nextInt();
-     System.out.print("Enter first name: ");
-     first_name = input.next();
-     System.out.print("Enter last name: ");
-     last_name = input.next();
-     System.out.print("Enter password: ");
-     password = input.next();
-     System.out.print("Is this user an admin? (Y/N) ");
-     char value = input.next().charAt(0);
-     isAdmin = String.valueOf(value).toLowerCase().equals("y");
-
-
-     Staffs.addStaff(id, first_name, last_name, password, isAdmin);
-
-     System.out.println("Staff created");
-
-     showStaffMenu();
-
-    }
-
-    static void printStaffRemove()
-    {
-        System.out.print("Enter ID of Staff to be removed: ");
-        int id = input.nextInt();
-        Staffs.removeStaff(id);
-        System.out.println("Staff removed");
-        showStaffMenu();
-
-    }
-
-
-    static void printStockEdit()
+    private static void printStockEdit()
     {
         System.out.print("Enter ID of item to be updated: ");
         int code = input.nextInt();
@@ -598,7 +460,7 @@ public class Main {
         showModifyStockMenu();
     }
 
-    static void printStockCheck()
+    private static void printStockCheck()
     {
         System.out.print("Enter ID of item to be checked: ");
         int code = input.nextInt();
@@ -608,7 +470,91 @@ public class Main {
         showModifyStockMenu();
     }
 
-    static void printCustomerAdd()
+    private static void printBillingAdd()
+    {
+        divider();
+        int customerID;
+        int itemCode, itemQty;
+        double discount;
+
+        ArrayList<Item> itemArrayList = new ArrayList<>();
+        ArrayList<Integer> itemQtys = new ArrayList<>();
+
+        Customer customer = null;
+        do {
+            System.out.print("Enter customer ID (0 for Guest): ");
+            customerID = input.nextInt();
+            customer = Customers.loadCustomer(customerID);
+        } while (customer == null);
+
+
+        do {
+            System.out.print("Enter the item code: (Enter 0 to exit)");
+            itemCode = input.nextInt();
+
+            if (itemCode != 0) {
+                Item item = Items.loadItem(itemCode); //Load item to check if code exists
+                if (item != null) {
+                    itemArrayList.add(item);
+                } else {
+                    System.out.println("Invalid item code.");
+                    continue;
+                }
+            } else {
+                System.out.println();
+                break;
+            }
+
+            System.out.print("Enter the item qty:");
+            itemQty = input.nextInt();
+            itemQtys.add(itemQty);
+
+        } while (itemCode != 0);
+
+        System.out.print("Enter discount percentage: ");
+        discount = input.nextDouble();
+
+        int[] itemQtyArr = new int[itemQtys.size()];
+        for (int i = 0; i < itemQtyArr.length; i++) {
+            itemQtyArr[i] = itemQtys.get(i);
+        }
+
+        Order o = Orders.addOrder(itemArrayList, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
+        divider();
+        System.out.println("Order ID " + o.getID());
+        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
+        System.out.println("Discount: \tRM " + String.format("%.2f", o.getDiscount()));
+        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
+
+        waitForEnter();
+
+        showBillingMenu();
+    }
+
+    private static void printShowBilling()
+    {
+        divider();
+        int order_id;
+        System.out.println("Enter order ID: ");
+        order_id = input.nextInt();
+        Order o = Orders.loadOrder(order_id);
+
+        System.out.println("Customer ID: " + o.getCustomer_id());
+        ArrayList<Item> itemArrayList = o.getItems();
+        for (int i = 0; i < itemArrayList.size(); i++) {
+            System.out.println(itemArrayList.get(i).getName() + "\tRM" + String.format("%.2f", itemArrayList.get(i).getPrice() * o.getItem_qty()[i]));
+            System.out.println("\t" + o.getItem_qty()[i] + " x RM" + String.format("%.2f", itemArrayList.get(i).getPrice()));
+            System.out.println("--------------------------------");
+        }
+        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
+        System.out.println("Discount: \tRM " + String.format("%.2f", o.getDiscount()));
+        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
+
+        waitForEnter();
+        showBillingMenu();
+    }
+
+    private static void printCustomerAdd()
     {
         System.out.println("Creating new customer: ");
         int code;
@@ -633,7 +579,7 @@ public class Main {
         showCustomersMenu();
     }
 
-    static void printCustomerCheck()
+    private static void printCustomerCheck()
     {
         System.out.print("Enter customer ID: ");
         int code = input.nextInt();
@@ -643,7 +589,7 @@ public class Main {
         showCustomersMenu();
     }
 
-    static void printCustomerModify()
+    private static void printCustomerModify()
     {
         System.out.print("Enter customer ID: ");
         int code = input.nextInt();
@@ -673,10 +619,9 @@ public class Main {
         System.out.println("Customer details updated. ");
 
         showCustomersMenu();
-
     }
 
-    public static void printProfileEdit()
+    private static void printProfileEdit()
     {
         String first_name;
         String last_name;
@@ -703,11 +648,48 @@ public class Main {
         System.out.println("Profile details updated. ");
 
         mainMenu();
+    }
 
+    private static void printStaffAdd()
+    {
+        int id;
+        String first_name;
+        String last_name;
+        String password;
+        Boolean isAdmin;
+
+        System.out.print("Enter Staff id: ");
+        id = input.nextInt();
+        System.out.print("Enter first name: ");
+        first_name = input.next();
+        System.out.print("Enter last name: ");
+        last_name = input.next();
+        System.out.print("Enter password: ");
+        password = input.next();
+        System.out.print("Is this user an admin? (Y/N) ");
+        char value = input.next().charAt(0);
+        isAdmin = String.valueOf(value).toLowerCase().equals("y");
+
+
+        Staffs.addStaff(id, first_name, last_name, password, isAdmin);
+
+        System.out.println("Staff created");
+
+        showStaffMenu();
 
     }
 
-    public static void divider()
+    private static void printStaffRemove()
+    {
+        System.out.print("Enter ID of Staff to be removed: ");
+        int id = input.nextInt();
+        Staffs.removeStaff(id);
+        System.out.println("Staff removed");
+        showStaffMenu();
+
+    }
+
+    private static void divider()
     {
         System.out.println("\n");
         System.out.println("======================================================================================");
@@ -724,7 +706,7 @@ public class Main {
         }
     }
 
-    static void exit()
+    private static void exit()
     {
         System.exit(0);
     }

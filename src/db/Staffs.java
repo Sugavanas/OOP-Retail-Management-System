@@ -3,8 +3,6 @@ package db;
 import classes.FileIO;
 import object.Staff;
 
-import java.util.ArrayList;
-
 public class Staffs
 {
     private static FileIO<Staff> file = new FileIO<>("staffs.dat", Staff.class);
@@ -22,11 +20,14 @@ public class Staffs
         file.delete(s);
     }
 
-    public static void editStaff(Staff s) {file.update(s);}
+    public static void editStaff(Staff s)
+    {
+        file.update(s);
+    }
 
     public static Boolean hasStaffs()
     {
-        if(file.read().size() != 0)
+        if (file.read().size() != 0)
             return true;
 
         return false;
@@ -36,10 +37,10 @@ public class Staffs
     {
         Staff s = file.getByID(id);
 
-        if(s == null)
+        if (s == null)
             return null;
 
-        if(s.getPassword().equals(password))
+        if (s.getPassword().equals(password))
             return s;
 
         return null;

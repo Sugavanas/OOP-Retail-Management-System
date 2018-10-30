@@ -52,12 +52,12 @@ public class Order extends Objects
 
             String[] strCodes = parts[1].split(",");
             this.item_codes = new int[strCodes.length];
-            for(int i = 0; i<strCodes.length; i++)
+            for (int i = 0; i < strCodes.length; i++)
                 this.item_codes[i] = Integer.valueOf(strCodes[i]);
 
             String[] strQty = parts[2].split(",");
             this.item_qty = new int[strQty.length];
-            for(int i = 0; i<strQty.length; i++)
+            for (int i = 0; i < strQty.length; i++)
                 this.item_qty[i] = Integer.valueOf(strQty[i]);
 
             this.customer_id = Integer.valueOf(parts[3]);
@@ -94,20 +94,18 @@ public class Order extends Objects
     {
         ArrayList<Item> itemArrayList = new ArrayList<>();
 
-       for(int i = 0; i < item_codes.length; i++)
-       {
-           itemArrayList.add(Items.loadItem(item_codes[i]));
-       }
+        for (int i = 0; i < item_codes.length; i++) {
+            itemArrayList.add(Items.loadItem(item_codes[i]));
+        }
 
-       return itemArrayList;
+        return itemArrayList;
     }
 
     public void setItems(ArrayList<Item> itemArrayList)
     {
         int[] item_codes = new int[itemArrayList.size()];
         int i = 0;
-        for (Item item : itemArrayList)
-        {
+        for (Item item : itemArrayList) {
             item_codes[i++] = Integer.valueOf(item.getID());
         }
         this.item_codes = item_codes;
@@ -186,8 +184,7 @@ public class Order extends Objects
     private String getItemIds()
     {
         String result = "";
-        for(int i : item_codes)
-        {
+        for (int i : item_codes) {
             result += String.valueOf(i) + ",";
         }
         result = result.substring(0, result.length() - 1); //remove last comma
@@ -198,8 +195,7 @@ public class Order extends Objects
     private String getItemQty()
     {
         String result = "";
-        for(int i : item_qty)
-        {
+        for (int i : item_qty) {
             result += String.valueOf(i) + ",";
         }
         result = result.substring(0, result.length() - 1); //remove last comma

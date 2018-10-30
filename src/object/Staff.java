@@ -36,7 +36,7 @@ public class Staff extends Objects
             this.id = Integer.valueOf(parts[0]);
             this.first_name = parts[1];
             this.last_name = parts[2];
-            this.password =  parts[3];
+            this.password = parts[3];
             this.isAdmin = (parts[4]).equals("1");
         } catch (Exception ex) {
             System.out.println("Error Loading."); //TODO log error
@@ -70,7 +70,7 @@ public class Staff extends Objects
         return last_name;
     }
 
-    public void setLast_name (String last_name)
+    public void setLast_name(String last_name)
     {
         this.last_name = last_name;
     }

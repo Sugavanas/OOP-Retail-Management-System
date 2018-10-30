@@ -5,7 +5,8 @@ import object.Customer;
 
 import java.util.ArrayList;
 
-public class Customers {
+public class Customers
+{
     private static FileIO<Customer> file = new FileIO<>("customers.dat", Customer.class);
 
     public static void addCustomer(int id, String first_name, String last_name, String mobile_number)
@@ -22,7 +23,7 @@ public class Customers {
 
     public static Customer loadCustomer(int id)
     {
-        if(id == 0)
+        if (id == 0)
             return new Customer(0, "Guest", "", "");
         else
             return file.getByID(id);
