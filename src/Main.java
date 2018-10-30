@@ -1,5 +1,6 @@
 import db.Customers;
 import db.Items;
+import db.Orders;
 import db.Staffs;
 import object.Customer;
 import object.Item;
@@ -296,18 +297,31 @@ public class Main {
     {
         int customerID;
         int itemCode;
+        double discount;
+
         ArrayList<Integer> itemCodes = new ArrayList<Integer>();
 
-        System.out.println("Enter your ID: ");
+        System.out.print("Enter your ID: ");
         customerID = input.nextInt();
 
         do {
-            System.out.println("Enter the item code: (Enter 0 to exit)");
+            System.out.print("Enter the item code: (Enter 0 to exit)");
             itemCode = input.nextInt();
             if (itemCode != 0){
                 itemCodes.add(itemCode);
             }
-        }while (itemCode != 0);
+        } while (itemCode != 0);
+
+        System.out.print("Enter discount percentage: ");
+        discount = input.nextDouble();
+
+        int[] itemCodesArr = new int[itemCodes.size()];
+        for (int i=0; i < itemCodesArr.length; i++)
+        {
+            itemCodesArr[i] = itemCodes.get(i);
+        }
+
+        Orders.addOrder(itemCodesArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
 
     }
 

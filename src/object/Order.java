@@ -29,6 +29,19 @@ public class Order extends Objects
         super(data);
     }
 
+    public Order(int id, int[] item_codes, int customer_id, int staff_id, Date date, double total, double discount, double grand_total)
+    {
+        this.id = id;
+        this.item_codes = item_codes;
+        this.customer_id = customer_id;
+        this.staff_id = staff_id;
+        this.date = date;
+        this.total = total;
+        this.discount = discount;
+        this.grand_total = grand_total;
+
+    }
+
     @Override
     public void loadFromString(String data)
     {
