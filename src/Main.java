@@ -306,14 +306,17 @@ public class Main {
         ArrayList<Item> itemArrayList = o.getItems();
         for (int i =0; i < itemArrayList.size(); i++)
         {
-            System.out.println("Name: " + itemArrayList.get(i).getName());
-            System.out.println("Price: " + itemArrayList.get(i).getPrice());
-
+            System.out.println(itemArrayList.get(i).getName() + "\tRM" + String.format("%.2f", itemArrayList.get(i).getPrice() * o.getItem_qty()[i]));
+            System.out.println("\t" + o.getItem_qty()[i] + " x RM" + String.format("%.2f", itemArrayList.get(i).getPrice()));
+            System.out.println("--------------------------------");
         }
-        System.out.println("Total: " + o.getTotal());
-        System.out.println("Discount: " + o.getDiscount() );
-        System.out.println("Grand Total: " + o.getGrand_total());
+        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
+        System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
+        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
 
+        System.out.println("Press enter to go back.");
+        input.next();
+        showBillingMenu();
     }
 
     static void printBillingAdd ()
@@ -358,6 +361,8 @@ public class Main {
         System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
         System.out.println("Discount: \tRM " + String.format("%.2f",o.getDiscount()));
         System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
+        System.out.println("Press enter to go back.");
+        input.next();
         showBillingMenu();
     }
 

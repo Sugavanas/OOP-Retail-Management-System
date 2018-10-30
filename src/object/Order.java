@@ -113,6 +113,16 @@ public class Order extends Objects
         this.item_codes = item_codes;
     }
 
+    public int[] getItem_qty()
+    {
+        return item_qty;
+    }
+
+    public void setItem_qty(int[] item_qty)
+    {
+        this.item_qty = item_qty;
+    }
+
     public int getCustomer_id()
     {
         return customer_id;
