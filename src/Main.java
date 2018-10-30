@@ -333,6 +333,10 @@ public class Main {
 
     static void showStaffMenu()
     {
+        if(!currentStaff.getIsAdmin()) {
+            System.out.println("You do not have permission to access this.");
+            mainMenu();
+        }
         System.out.println("1) Add Staff\n" +
                 "2) Remove staff\n" +
                 "0) Go back");
@@ -464,7 +468,7 @@ public class Main {
      last_name = input.next();
      System.out.print("Enter password: ");
      password = input.next();
-     System.out.print("Are you an admin? (Y/N) ");
+     System.out.print("Is this user an admin? (Y/N) ");
      char value = input.next().charAt(0);
      isAdmin = String.valueOf(value).toLowerCase().equals("y");
 
