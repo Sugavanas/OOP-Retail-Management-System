@@ -58,6 +58,7 @@ public class Main
          * --Modify Stock
          * 1) Edit stock of item
          * 2) Check stock
+         * 3) List Out of Stock Items
          *
          * -Billing
          * 1) Add new bill
@@ -376,6 +377,7 @@ public class Main
         divider();
         System.out.println("1) Edit stock of item\n" +
                 "2) Check stock\n" +
+                "3) List out of stock items\n" +
                 "0) Go back");
 
         int option;
@@ -393,6 +395,8 @@ public class Main
                 case 2:
                     printStockCheck();
                     break;
+                case 3:
+                    printStockOutOfStock();
                 default:
                     System.out.println("Invalid option.");
                     option = -1;
@@ -533,6 +537,29 @@ public class Main
         System.out.printf("Item name: %s\nItem stock: %s", i.getName(), i.getStockAvailable());
 
         showModifyStockMenu();
+    }
+
+    /**
+     * Check and List down all items that are not in stock or are in negative quantity.
+     */
+    private static void printStockOutOfStock()
+    {
+        divider();
+        ArrayList<Item> itemArrayList = Items.outOfStock();
+        if(itemArrayList.size() > 0)
+        {
+            System.out.println("Code \t Name \t Price \t Qty");
+            for(Item i : itemArrayList)
+            {
+                System.out.println(i.getCode() + " \t " + i.getName() + " \t " + i.getPrice() + " \t " + i.getStockAvailable());
+            }
+            waitForEnter();
+        }
+        else
+        {
+            System.out.println("All items are in stock.");
+        }
+        showModifyItemsMenu();
     }
 
     /**

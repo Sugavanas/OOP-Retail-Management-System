@@ -45,4 +45,16 @@ public class Items
 
         file.update(i);
     }
+
+    public static ArrayList<Item> outOfStock()
+    {
+        ArrayList<Item> itemArrayList = file.read();
+        ArrayList<Item> returnList = new ArrayList<>();
+        for(int i = 0; i < itemArrayList.size(); i++)
+        {
+            if(itemArrayList.get(i).getStockAvailable() <= 0)
+               returnList.add(itemArrayList.get(i));
+        }
+        return returnList;
+    }
 }
