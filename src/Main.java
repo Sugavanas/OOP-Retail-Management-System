@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static Scanner input;
+    private static Scanner input; //Takes input from user
 
     private static Staff currentStaff;
 
@@ -22,6 +22,10 @@ public class Main
         input = new Scanner(System.in);
 
         System.out.println("Retail Management System V1.0");
+        /** If there are no staff, it will go to the first launch function.
+         * Else if a staff profile is currently created in the database, it will go to the login screen.
+         */
+
         if (!Staffs.hasStaffs())
             firstLaunch();
         else
@@ -72,6 +76,10 @@ public class Main
          */
     }
 
+    /**
+     * Creating a staff profile.
+     */
+
     private static void firstLaunch()
     {
         String first_name, last_name, password;
@@ -94,6 +102,10 @@ public class Main
         loginScreen();
 
     }
+
+    /**
+     * Asks the staff to enter the credentials.
+     */
 
     private static void loginScreen()
     {
@@ -119,6 +131,10 @@ public class Main
         mainMenu();
     }
 
+    /**
+     * Once the staff has logged in, this is the Main Menu.
+     */
+
     private static void mainMenu()
     {
         divider();
@@ -128,7 +144,7 @@ public class Main
                 "2) Billing\n" +
                 "3) Customers\n" +
                 "4) Edit my profile\n" +
-                (currentStaff.getIsAdmin() ? "5) Add/Remove staffs\n" : "") +
+                (currentStaff.getIsAdmin() ? "5) Add/Remove staffs\n" : "") + // If the staff is admin, the admin can add or remove other staffs.
                 "0) Exit");
         int option;
         do {
@@ -163,6 +179,10 @@ public class Main
 
     }
 
+
+    /**
+     * Menu showing the inventory
+     */
     private static void showInventoryMenu()
     {
         divider();
@@ -192,6 +212,10 @@ public class Main
             }
         } while (option == -1);
     }
+
+    /**
+     * Menu for adding/checking new bills.
+     */
 
     private static void showBillingMenu()
     {
@@ -223,6 +247,9 @@ public class Main
         } while (option == -1);
     }
 
+    /**
+     * Managing customer's information.
+     */
     private static void showCustomersMenu()
     {
         divider();
@@ -257,10 +284,18 @@ public class Main
         } while (option == -1);
     }
 
+    /**
+     * Edits current staff information.
+     */
+
     private static void showProfileMenu()
     {
         printProfileEdit();
     }
+
+    /**
+     * If you are an admin, you have the authority to add/remove staffs.
+     */
 
     private static void showStaffMenu()
     {
@@ -294,6 +329,10 @@ public class Main
             }
         } while (option == -1);
     }
+
+    /**
+     * Menu for managing items.
+     */
 
     private static void showModifyItemsMenu()
     {
@@ -333,6 +372,10 @@ public class Main
 
     }
 
+    /**
+     * Menu for managing stock.
+     */
+
     private static void showModifyStockMenu()
     {
         divider();
@@ -363,6 +406,10 @@ public class Main
         } while (option == -1);
     }
 
+    /**
+     * Displays the item details, when you enter the item ID.
+     */
+
     private static void printItemDetails()
     {
         System.out.println("Enter ID of item to be retrieved: ");
@@ -374,6 +421,9 @@ public class Main
         showModifyItemsMenu();
     }
 
+    /**
+     * Adding new items.
+     */
     private static void printItemAdd()
     {
         System.out.println("Creating new item: ");
@@ -405,6 +455,10 @@ public class Main
         showModifyItemsMenu();
     }
 
+    /**
+     * Method used to remove items by entering the item ID.
+     */
+
     private static void printItemRemove()
     {
         System.out.println("Enter ID of item to be removed: ");
@@ -414,6 +468,9 @@ public class Main
         showModifyItemsMenu();
     }
 
+    /**
+     * Updating item information.
+     */
     private static void printItemEdit()
     {
         System.out.print("Enter code of item to be edit: ");
@@ -448,6 +505,9 @@ public class Main
         showModifyItemsMenu();
     }
 
+    /**
+     * Updating Stock information.
+     */
     private static void printStockEdit()
     {
         System.out.print("Enter ID of item to be updated: ");
@@ -460,6 +520,9 @@ public class Main
         showModifyStockMenu();
     }
 
+    /**
+     * Checking stock information.
+     */
     private static void printStockCheck()
     {
         System.out.print("Enter ID of item to be checked: ");
@@ -469,6 +532,10 @@ public class Main
 
         showModifyStockMenu();
     }
+
+    /**
+     *Calculates the Grand total for a specific customer.
+     */
 
     private static void printBillingAdd()
     {
@@ -531,6 +598,10 @@ public class Main
         showBillingMenu();
     }
 
+    /**
+     * Method used to display the Grand total for a specific customer when the Item code is entered.
+     */
+
     private static void printShowBilling()
     {
         divider();
@@ -553,6 +624,10 @@ public class Main
         waitForEnter();
         showBillingMenu();
     }
+
+    /**
+     * Adding new customers to the database.
+     */
 
     private static void printCustomerAdd()
     {
@@ -579,6 +654,9 @@ public class Main
         showCustomersMenu();
     }
 
+    /**
+     * Displays the customer information.
+     */
     private static void printCustomerCheck()
     {
         System.out.print("Enter customer ID: ");
@@ -589,6 +667,9 @@ public class Main
         showCustomersMenu();
     }
 
+    /**
+     * Edits customer profile.
+     */
     private static void printCustomerModify()
     {
         System.out.print("Enter customer ID: ");
@@ -621,6 +702,9 @@ public class Main
         showCustomersMenu();
     }
 
+    /**
+     * Edits staff profile.
+     */
     private static void printProfileEdit()
     {
         String first_name;
@@ -650,6 +734,9 @@ public class Main
         mainMenu();
     }
 
+    /**
+     * Adding a new staff.
+     */
     private static void printStaffAdd()
     {
         int id;
@@ -679,6 +766,9 @@ public class Main
 
     }
 
+    /**
+     * Function for removing staff.
+     */
     private static void printStaffRemove()
     {
         System.out.print("Enter ID of Staff to be removed: ");
@@ -696,6 +786,8 @@ public class Main
         System.out.println();
     }
 
+
+
     private static void waitForEnter()
     {
         System.out.println("\n\nPress enter to continue...");
@@ -706,6 +798,9 @@ public class Main
         }
     }
 
+    /**
+     * Terminates the program.
+     */
     private static void exit()
     {
         System.exit(0);
