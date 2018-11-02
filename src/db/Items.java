@@ -25,11 +25,6 @@ public class Items
         Item item = new Item(code, name, price, cost, stockAvaiable);
 
         file.insert(item);
-
-        //For testing
-        ArrayList<Item> itemArrayList = file.read();
-        for (Item i : itemArrayList)
-            System.out.println(i.saveString());
     }
 
     /**
