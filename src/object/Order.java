@@ -30,6 +30,19 @@ public class Order extends Objects
         super(data);
     }
 
+    /**
+     * Constructor
+     *
+     * @param id
+     * @param item_codes
+     * @param item_qty
+     * @param customer_id
+     * @param staff_id
+     * @param date
+     * @param total
+     * @param discount
+     * @param grand_total
+     */
     public Order(int id, int[] item_codes, int[] item_qty, int customer_id, int staff_id, Date date, double total, double discount, double grand_total)
     {
         this.id = id;
@@ -43,6 +56,11 @@ public class Order extends Objects
         this.grand_total = grand_total;
     }
 
+    /**
+     * Split string and load data into existing variables
+     *
+     * @param data
+     */
     @Override
     public void loadFromString(String data)
     {
@@ -76,6 +94,11 @@ public class Order extends Objects
         }
     }
 
+    /**
+     * Returns a string for saving
+     *
+     * @return
+     */
     @Override
     public String saveString()
     {
@@ -89,6 +112,10 @@ public class Order extends Objects
     {
         return String.valueOf(id);
     }
+
+    /*
+    get set methods
+     */
 
     public ArrayList<Item> getItems()
     {
