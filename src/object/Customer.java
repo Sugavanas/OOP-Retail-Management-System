@@ -16,6 +16,13 @@ public class Customer extends Objects
         super(data);
     }
 
+    /**
+     * Constructor
+     * @param id
+     * @param first_name
+     * @param last_name
+     * @param mobile_number
+     */
     public Customer(int id, String first_name, String last_name, String mobile_number)
     {
         this.id = id;
@@ -24,6 +31,10 @@ public class Customer extends Objects
         this.mobile_number = mobile_number;
     }
 
+    /**
+     * Split string and load the data into existing variables.
+     * @param data
+     */
     @Override
     public void loadFromString(String data)
     {
@@ -38,6 +49,10 @@ public class Customer extends Objects
         }
     }
 
+    /**
+     * Returns a string for saving
+     * @return
+     */
     @Override
     public String saveString()
     {
@@ -52,7 +67,7 @@ public class Customer extends Objects
         return String.valueOf(id);
     }
 
-    /**
+    /*
      * Get Set methods
      */
 

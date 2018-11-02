@@ -19,8 +19,16 @@ public abstract class Objects
         loadFromString(data);
     }
 
+    /**
+     * This method is used by the constructor to load data from string
+     * @param data
+     */
     public abstract void loadFromString(String data);
 
+    /**
+     * This method is used by the constructor to save data from string
+     * @return
+     */
     public abstract String saveString();
 
     public abstract String getID();

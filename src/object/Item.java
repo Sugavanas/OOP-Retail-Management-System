@@ -29,6 +29,14 @@ public class Item extends Objects
         super(data);
     }
 
+    /**
+     * Constructor
+     * @param code
+     * @param name
+     * @param price
+     * @param cost
+     * @param stockAvailable
+     */
     public Item(int code, String name, double price, double cost, int stockAvailable)
     {
         this.code = code;
@@ -38,6 +46,10 @@ public class Item extends Objects
         this.stockAvailable = stockAvailable;
     }
 
+    /**
+     * Split string and load data into existing variables
+     * @param data
+     */
     @Override
     public void loadFromString(String data)
     {
@@ -53,6 +65,10 @@ public class Item extends Objects
         }
     }
 
+    /**
+     * Returns a string for saving
+     * @return
+     */
     @Override
     public String saveString()
     {

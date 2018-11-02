@@ -9,8 +9,20 @@ import java.util.Date;
 
 public class Orders
 {
+    /**
+     * An instance of File IO class.
+     */
     private static FileIO<Order> file = new FileIO<>("orders.dat", Order.class);
 
+    /**
+     * Create a new Order.
+     * @param itemArrayList
+     * @param item_qty
+     * @param customer_id
+     * @param staff_id
+     * @param discount_percentage
+     * @return
+     */
     public static Order addOrder(ArrayList<Item> itemArrayList, int[] item_qty, int customer_id, int staff_id, double discount_percentage)
     {
         double total = 0;
@@ -29,11 +41,19 @@ public class Orders
         return order;
     }
 
+    /**
+     * Gets the date.
+     * @return
+     */
     private static Date getDate()
     {
         return new Date();
     }
 
+    /**
+     * Increments the Order ID
+     * @return
+     */
     private static int getNextID()
     {
         ArrayList<Order> orderArrayList = file.read();
@@ -43,6 +63,11 @@ public class Orders
             return 1;
     }
 
+    /**
+     * Loads order by ID.
+     * @param id
+     * @return
+     */
     public static Order loadOrder(int id)
     {
         return file.getByID(id);

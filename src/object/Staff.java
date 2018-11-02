@@ -19,6 +19,14 @@ public class Staff extends Objects
         super(data);
     }
 
+    /**
+     * Constructor
+     * @param id
+     * @param first_name
+     * @param last_name
+     * @param password
+     * @param isAdmin
+     */
     public Staff(int id, String first_name, String last_name, String password, Boolean isAdmin)
     {
         this.id = id;
@@ -28,6 +36,10 @@ public class Staff extends Objects
         this.isAdmin = isAdmin;
     }
 
+    /**
+     * Split string and load data into existing variables
+     * @param data
+     */
     @Override
     public void loadFromString(String data)
     {
@@ -43,6 +55,10 @@ public class Staff extends Objects
         }
     }
 
+    /**
+     * Returns string for saving
+     * @return
+     */
     @Override
     public String saveString()
     {
@@ -54,6 +70,9 @@ public class Staff extends Objects
     {
         return String.valueOf(id);
     }
+    /*
+    get set methods
+     */
 
     public String getFirst_name()
     {
