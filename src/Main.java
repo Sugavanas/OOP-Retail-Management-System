@@ -22,17 +22,18 @@ public class Main
         input = new Scanner(System.in);
 
         System.out.println("Retail Management System V1.0");
-        /** If there are no staff, it will go to the first launch function.
+
+        /*
+         * If there are no staff, it will go to the first launch function.
          * Else if a staff profile is currently created in the database, it will go to the login screen.
          */
-
         if (!Staffs.hasStaffs())
             firstLaunch();
         else
             loginScreen();
 
 
-        /**
+        /*
          * Main Screen (After launching):
          * 1)Login
          * 2)Create staff ( only master password )
@@ -79,7 +80,6 @@ public class Main
     /**
      * Creating a staff profile.
      */
-
     private static void firstLaunch()
     {
         String first_name, last_name, password;
@@ -106,7 +106,6 @@ public class Main
     /**
      * Asks the staff to enter the credentials.
      */
-
     private static void loginScreen()
     {
         int id;
@@ -134,7 +133,6 @@ public class Main
     /**
      * Once the staff has logged in, this is the Main Menu.
      */
-
     private static void mainMenu()
     {
         divider();
@@ -216,7 +214,6 @@ public class Main
     /**
      * Menu for adding/checking new bills.
      */
-
     private static void showBillingMenu()
     {
         divider();
@@ -287,7 +284,6 @@ public class Main
     /**
      * Edits current staff information.
      */
-
     private static void showProfileMenu()
     {
         printProfileEdit();
@@ -296,13 +292,14 @@ public class Main
     /**
      * If you are an admin, you have the authority to add/remove staffs.
      */
-
     private static void showStaffMenu()
     {
         if (!currentStaff.getIsAdmin()) {
             System.out.println("You do not have permission to access this.");
             mainMenu();
         }
+
+        divider();
         System.out.println("1) Add Staff\n" +
                 "2) Remove staff\n" +
                 "0) Go back");
@@ -333,7 +330,6 @@ public class Main
     /**
      * Menu for managing items.
      */
-
     private static void showModifyItemsMenu()
     {
         divider();
@@ -375,7 +371,6 @@ public class Main
     /**
      * Menu for managing stock.
      */
-
     private static void showModifyStockMenu()
     {
         divider();
@@ -409,13 +404,16 @@ public class Main
     /**
      * Displays the item details, when you enter the item ID.
      */
-
     private static void printItemDetails()
     {
         System.out.println("Enter ID of item to be retrieved: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
-
+        if(i == null)
+        {
+            System.out.println("Invalid item.");
+            showModifyItemsMenu();
+        }
         System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n", i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()));
 
         showModifyItemsMenu();
@@ -458,7 +456,6 @@ public class Main
     /**
      * Method used to remove items by entering the item ID.
      */
-
     private static void printItemRemove()
     {
         System.out.println("Enter ID of item to be removed: ");
@@ -480,7 +477,11 @@ public class Main
         double cost;
 
         Item i = Items.loadItem(code);
-
+        if(i == null)
+        {
+            System.out.println("Invalid item.");
+            showModifyItemsMenu();
+        }
         System.out.println("Modifying item " + code + " (Enter 0 to not change value)");
 
         System.out.print("Enter item name [" + i.getName() + "]: ");
@@ -510,6 +511,7 @@ public class Main
      */
     private static void printStockEdit()
     {
+        System.out.println();
         System.out.print("Enter ID of item to be updated: ");
         int code = input.nextInt();
         System.out.print("Enter stock to add amount: ");
@@ -536,7 +538,6 @@ public class Main
     /**
      *Calculates the Grand total for a specific customer.
      */
-
     private static void printBillingAdd()
     {
         divider();
@@ -601,7 +602,6 @@ public class Main
     /**
      * Method used to display the Grand total for a specific customer when the Item code is entered.
      */
-
     private static void printShowBilling()
     {
         divider();
@@ -628,9 +628,9 @@ public class Main
     /**
      * Adding new customers to the database.
      */
-
     private static void printCustomerAdd()
     {
+        divider();
         System.out.println("Creating new customer: ");
         int code;
         String First_name, Last_name, mobile_number;
@@ -659,11 +659,13 @@ public class Main
      */
     private static void printCustomerCheck()
     {
+        divider();
         System.out.print("Enter customer ID: ");
         int code = input.nextInt();
         Customer c = Customers.loadCustomer(code);
         System.out.printf("Customer name: %s %s\nCustomer contact number: %s", c.getFirst_name(), c.getLast_name(), c.getMobile_number());
 
+        waitForEnter();
         showCustomersMenu();
     }
 
@@ -672,13 +674,14 @@ public class Main
      */
     private static void printCustomerModify()
     {
-        System.out.print("Enter customer ID: ");
+
+        System.out.print("\nEnter Customer ID: ");
         int code = input.nextInt();
         String First_name, Last_name, mobile_number;
 
         Customer c = Customers.loadCustomer(code);
 
-        System.out.println("Modifying customer " + code + " + (Enter 0 to not change value)");
+        System.out.println("Modifying customer " + code + " (Enter 0 to not change value)");
 
         System.out.print("Enter customer first name [" + c.getFirst_name() + "]: ");
         First_name = input.next();
@@ -710,6 +713,8 @@ public class Main
         String first_name;
         String last_name;
         String password;
+
+        System.out.println("Editing profile (Enter 0 to not change value)");
 
         System.out.print("Enter first name [" + currentStaff.getFirst_name() + "]: ");
         first_name = input.next();
@@ -745,7 +750,9 @@ public class Main
         String password;
         Boolean isAdmin;
 
-        System.out.print("Enter Staff id: ");
+        divider();
+
+        System.out.print("Enter Staff ID: ");
         id = input.nextInt();
         System.out.print("Enter first name: ");
         first_name = input.next();
@@ -785,8 +792,6 @@ public class Main
         System.out.println("======================================================================================");
         System.out.println();
     }
-
-
 
     private static void waitForEnter()
     {

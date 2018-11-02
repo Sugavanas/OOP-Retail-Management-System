@@ -3,8 +3,6 @@ package db;
 import classes.FileIO;
 import object.Customer;
 
-import java.util.ArrayList;
-
 public class Customers
 {
     private static FileIO<Customer> file = new FileIO<>("customers.dat", Customer.class);
@@ -14,11 +12,6 @@ public class Customers
         Customer item = new Customer(id, first_name, last_name, mobile_number);
 
         file.insert(item);
-
-        //For testing
-        ArrayList<Customer> itemArrayList = file.read();
-        for (Customer c : itemArrayList)
-            System.out.println(c.saveString());
     }
 
     public static Customer loadCustomer(int id)
