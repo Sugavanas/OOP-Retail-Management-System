@@ -606,6 +606,13 @@ public class Main
 
         } while (itemCode != 0);
 
+        if(itemArrayList.size() == 0)
+        {
+            System.out.println("No Items were provided.");
+            waitForEnter();
+            showBillingMenu();
+        }
+
         System.out.print("Enter discount percentage: ");
         discount = input.nextDouble();
 
