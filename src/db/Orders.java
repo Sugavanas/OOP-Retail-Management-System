@@ -57,8 +57,8 @@ public class Orders
     private static int getNextID()
     {
         ArrayList<Order> orderArrayList = file.read();
-        if (orderArrayList.size() > 1)
-            return Integer.valueOf(orderArrayList.get(orderArrayList.size() - 1).getID()) + 1;
+        if (orderArrayList.size() >= 1)
+            return (Integer.valueOf(orderArrayList.get(orderArrayList.size() - 1).getID()) + 1);
         else
             return 1;
     }

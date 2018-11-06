@@ -1,3 +1,4 @@
+import classes.Input;
 import db.Customers;
 import db.Items;
 import db.Orders;
@@ -13,16 +14,15 @@ import java.util.Scanner;
 
 public class Main
 {
-    private static Scanner input; //Takes input from user
+    private static Input input; //Takes input from user
 
     private static Staff currentStaff;
 
     public static void main(String[] args)
     {
-        input = new Scanner(System.in);
+        input = new Input();
 
         System.out.println("Retail Management System V1.0");
-
         /*
          * If there are no staff, it will go to the first launch function.
          * Else if a staff profile is currently created in the database, it will go to the login screen.
@@ -87,12 +87,12 @@ public class Main
 
         System.out.println("Welcome, create a new staff login: ");
 
-        System.out.println("Enter Staff First Name: ");
-        first_name = input.nextLine();
-        System.out.println("Enter Staff Last Name: ");
-        last_name = input.nextLine();
-        System.out.println("Enter Password: ");
-        password = input.nextLine();
+        System.out.print("Enter Staff First Name: ");
+        first_name = input.next();
+        System.out.print("Enter Staff Last Name: ");
+        last_name = input.next();
+        System.out.print("Enter Password: ");
+        password = input.next();
 
         Staffs.addStaff(1, first_name, last_name, password, true);
 
@@ -410,7 +410,7 @@ public class Main
      */
     private static void printItemDetails()
     {
-        System.out.println("Enter ID of item to be retrieved: ");
+        System.out.print("Enter ID of item to be retrieved: ");
         int code = input.nextInt();
         Item i = Items.loadItem(code);
         if(i == null)
@@ -438,6 +438,13 @@ public class Main
         System.out.print("Enter item code: ");
         code = input.nextInt();
 
+        if(Items.loadItem(code) != null)
+        {
+            System.out.println("Item code already exist.");
+            waitForEnter();
+            showModifyItemsMenu();
+        }
+
         System.out.print("Enter item name:");
         name = input.next();
 
@@ -454,6 +461,7 @@ public class Main
 
         System.out.println("Item Created.");
 
+        waitForEnter();
         showModifyItemsMenu();
     }
 
@@ -465,6 +473,7 @@ public class Main
         System.out.println("Enter ID of item to be removed: ");
         int code = input.nextInt();
         Items.removeItem(code);
+        System.out.println("Item Removed");
 
         showModifyItemsMenu();
     }
@@ -584,7 +593,7 @@ public class Main
 
 
         do {
-            System.out.print("Enter the item code: (Enter 0 to exit)");
+            System.out.print("Enter the item code: (Enter 0 to continue)");
             itemCode = input.nextInt();
 
             if (itemCode != 0) {
