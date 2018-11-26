@@ -18,6 +18,8 @@ public class Main
 
     private static Staff currentStaff;
 
+    private static final String currencySymbol = "RM ";
+
     public static void main(String[] args)
     {
         input = new Input();
@@ -418,7 +420,7 @@ public class Main
             System.out.println("Invalid item.");
             showModifyItemsMenu();
         }
-        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n", i.getName(), String.format("%.2f", i.getPrice()), String.format("%.2f", i.getCost()));
+        System.out.printf("Item name: %s\nItem price: %s\nItem cost: %s\n", i.getName(), currencyFormat(i.getPrice()), currencyFormat(i.getCost()));
 
         showModifyItemsMenu();
     }
@@ -633,9 +635,9 @@ public class Main
         Order o = Orders.addOrder(itemArrayList, itemQtyArr, customerID, Integer.valueOf(currentStaff.getID()), discount);
         divider();
         System.out.println("Order ID " + o.getID());
-        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
-        System.out.println("Discount: \tRM " + String.format("%.2f", o.getDiscount()));
-        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
+        System.out.println("Total amount: \t" + currencyFormat(o.getTotal()));
+        System.out.println("Discount: \t" + currencyFormat(o.getDiscount()));
+        System.out.println("Grand total: \t" + currencyFormat(o.getGrand_total()));
 
         waitForEnter();
 
@@ -653,17 +655,23 @@ public class Main
         order_id = input.nextInt();
         Order o = Orders.loadOrder(order_id);
 
-        System.out.println("Customer ID: " + o.getCustomer_id());
-        ArrayList<Item> itemArrayList = o.getItems();
-        for (int i = 0; i < itemArrayList.size(); i++) {
-            System.out.println(itemArrayList.get(i).getName() + "\tRM" + String.format("%.2f", itemArrayList.get(i).getPrice() * o.getItem_qty()[i]));
-            System.out.println("\t" + o.getItem_qty()[i] + " x RM" + String.format("%.2f", itemArrayList.get(i).getPrice()));
-            System.out.println("--------------------------------");
+        if(o == null)
+        {
+            System.out.println("\nInvalid Order ID.");
         }
-        System.out.println("Total amount: \tRM " + String.format("%.2f", o.getTotal()));
-        System.out.println("Discount: \tRM " + String.format("%.2f", o.getDiscount()));
-        System.out.println("Grand total: \tRM " + String.format("%.2f", o.getGrand_total()));
-
+        else
+        {
+            System.out.println("Customer ID: " + o.getCustomer_id());
+            ArrayList<Item> itemArrayList = o.getItems();
+            for (int i = 0; i < itemArrayList.size(); i++) {
+                System.out.println(itemArrayList.get(i).getName() + "\t" + currencyFormat(itemArrayList.get(i).getPrice() * o.getItem_qty()[i]));
+                System.out.println("\t" + o.getItem_qty()[i] + " x " + currencyFormat(itemArrayList.get(i).getPrice()));
+                System.out.println("--------------------------------");
+            }
+            System.out.println("Total amount: \t" + currencyFormat(o.getTotal()));
+            System.out.println("Discount: \t" + currencyFormat(o.getDiscount()));
+            System.out.println("Grand total: \t" + currencyFormat(o.getGrand_total()));
+        }
         waitForEnter();
         showBillingMenu();
     }
@@ -681,19 +689,23 @@ public class Main
         System.out.print("Enter customer code: ");
         code = input.nextInt();
 
-        System.out.print("Enter customer first name: ");
-        First_name = input.next();
+        Customer c = Customers.loadCustomer(code);
+        if(c != null)
+            System.out.println("Customer ID already exists.");
+        else {
+            System.out.print("Enter customer first name: ");
+            First_name = input.next();
 
-        System.out.print("Enter customer last name: ");
-        Last_name = input.next();
+            System.out.print("Enter customer last name: ");
+            Last_name = input.next();
 
-        System.out.print("Enter customer contact number: ");
-        mobile_number = input.next();
+            System.out.print("Enter customer contact number: ");
+            mobile_number = input.next();
 
-        Customers.addCustomer(code, First_name, Last_name, mobile_number);
+            Customers.addCustomer(code, First_name, Last_name, mobile_number);
 
-        System.out.println("Customer details added.");
-
+            System.out.println("Customer details added.");
+        }
         showCustomersMenu();
     }
 
@@ -844,6 +856,11 @@ public class Main
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static String currencyFormat(double amount)
+    {
+        return currencySymbol + String.format("%.2f", amount);
     }
 
     /**
