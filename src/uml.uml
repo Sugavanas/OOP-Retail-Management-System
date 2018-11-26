@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="709.5728546626985" y="212.0">classes.FileIO</node>
+    <node x="441.04166666666674" y="600.0">db.Items</node>
+    <node x="253.04166666666663" y="1346.5">db.Orders</node>
+    <node x="786.0416666666667" y="1357.5">db.Customers</node>
+    <node x="867.7228546626984" y="945.0">object.Customer</node>
+    <node x="43.04166666666663" y="857.0">object.Order</node>
+    <node x="713.5728546626985" y="0.0">classes.Objects</node>
+    <node x="1190.6603546626984" y="934.0">object.Staff</node>
+    <node x="1445.0416666666665" y="1324.0">classes.Input</node>
+    <node x="292.40916832010606" y="245.0">object.Item</node>
+    <node x="1105.0416666666665" y="1335.5">db.Staffs</node>
+    <node x="901.2916666666667" y="1590.0">Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Main" target="db.Staffs">
+      <point x="34.049999999999955" y="-356.5" />
+      <point x="1048.8416666666667" y="1540.0" />
+      <point x="1264.5416666666665" y="1540.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="Main" target="db.Orders">
+      <point x="-56.75" y="-356.5" />
+      <point x="958.0416666666667" y="1550.0" />
+      <point x="430.54166666666663" y="1550.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="Main" target="db.Customers">
+      <point x="-11.349999999999909" y="-356.5" />
+      <point x="1003.4416666666668" y="1530.0" />
+      <point x="935.0416666666667" y="1530.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="db.Customers" target="classes.FileIO">
+      <point x="-119.20000000000016" y="-59.5" />
+      <point x="815.8416666666665" y="1304.0" />
+      <point x="829.0877397486773" y="1304.0" />
+      <point x="829.0877397486773" y="580.0" />
+      <point x="834.4478546626985" y="580.0" />
+      <point x="13.875" y="159.0" />
+    </edge>
+    <edge source="Main" target="db.Items">
+      <point x="-34.049999999999955" y="-356.5" />
+      <point x="980.7416666666668" y="1540.0" />
+      <point x="775.5416666666667" y="1540.0" />
+      <point x="775.5416666666667" y="837.0" />
+      <point x="692.7083333333334" y="837.0" />
+      <point x="100.66666666666663" y="103.5" />
+    </edge>
+    <edge source="Main" target="object.Staff">
+      <point x="56.75" y="-356.5" />
+      <point x="1071.5416666666667" y="1550.0" />
+      <point x="1434.5416666666665" y="1550.0" />
+      <point x="1434.5416666666665" y="1304.0" />
+      <point x="1432.1603546626984" y="1304.0" />
+      <point x="103.5" y="126.5" />
+    </edge>
+    <edge source="Main" target="object.Item">
+      <point x="-102.14999999999986" y="-356.5" />
+      <point x="912.6416666666669" y="1570.0" />
+      <point x="32.54166666666663" y="1570.0" />
+      <point x="32.54166666666663" y="570.0" />
+      <point x="313.99250165343943" y="570.0" />
+      <point x="-107.91666666666663" y="126.0" />
+    </edge>
+    <edge source="Main" target="classes.Input">
+      <point x="79.45000000000005" y="-356.5" />
+      <point x="1094.2416666666668" y="1560.0" />
+      <point x="1488.7916666666665" y="1560.0" />
+      <point x="-43.75" y="93.0" />
+    </edge>
+    <edge source="db.Orders" target="classes.FileIO">
+      <point x="101.42857142857144" y="-70.5" />
+      <point x="531.9702380952381" y="1294.0" />
+      <point x="753.5416666666667" y="1294.0" />
+      <point x="753.5416666666667" y="570.0" />
+      <point x="778.9478546626985" y="570.0" />
+      <point x="-41.625" y="159.0" />
+    </edge>
+    <edge source="db.Customers" target="object.Customer">
+      <point x="-1.1368683772161603E-13" y="-59.5" />
+      <point x="935.0416666666665" y="1304.0" />
+      <point x="899.5978546626984" y="1304.0" />
+      <point x="-95.625" y="115.5" />
+    </edge>
+    <edge source="db.Orders" target="object.Item">
+      <point x="5.6843418860808015E-14" y="-70.5" />
+      <point x="430.5416666666667" y="580.0" />
+      <point x="400.3258349867727" y="580.0" />
+      <point x="-21.58333333333337" y="126.0" />
+    </edge>
+    <edge source="db.Items" target="object.Item">
+      <point x="-120.80000000000001" y="-103.5" />
+      <point x="471.24166666666673" y="580.0" />
+      <point x="443.4925016534394" y="580.0" />
+      <point x="21.583333333333314" y="126.0" />
+    </edge>
+    <edge source="Main" target="object.Customer">
+      <point x="11.349999999999909" y="-356.5" />
+      <point x="1026.1416666666667" y="1530.0" />
+      <point x="1094.5416666666667" y="1530.0" />
+      <point x="1094.5416666666667" y="1304.0" />
+      <point x="1090.8478546626984" y="1304.0" />
+      <point x="95.62500000000011" y="115.5" />
+    </edge>
+    <edge source="object.Item" target="classes.Objects">
+      <point x="-64.75" y="-126.0" />
+      <point x="357.15916832010606" y="182.0" />
+      <point x="773.0172991071429" y="182.0" />
+      <point x="-47.55555555555554" y="71.0" />
+    </edge>
+    <edge source="object.Staff" target="classes.Objects">
+      <point x="-69.0" y="-126.5" />
+      <point x="1259.6603546626984" y="837.0" />
+      <point x="1344.0416666666665" y="837.0" />
+      <point x="1344.0416666666665" y="172.0" />
+      <point x="891.9061879960318" y="172.0" />
+      <point x="71.33333333333326" y="71.0" />
+    </edge>
+    <edge source="object.Order" target="object.Item">
+      <point x="47.125" y="-203.5" />
+      <point x="278.6666666666667" y="580.0" />
+      <point x="357.15916832010606" y="580.0" />
+      <point x="-64.75" y="126.0" />
+    </edge>
+    <edge source="Main" target="object.Order">
+      <point x="-79.44999999999993" y="-356.5" />
+      <point x="935.3416666666667" y="1560.0" />
+      <point x="101.02678158068773" y="1560.0" />
+      <point x="101.02678158068773" y="1304.0" />
+      <point x="90.16666666666663" y="1304.0" />
+      <point x="-141.375" y="203.5" />
+    </edge>
+    <edge source="object.Order" target="db.Items">
+      <point x="141.375" y="-203.5" />
+      <point x="372.91666666666663" y="837.0" />
+      <point x="491.37500000000006" y="837.0" />
+      <point x="-100.66666666666669" y="103.5" />
+    </edge>
+    <edge source="object.Customer" target="classes.Objects">
+      <point x="-63.749999999999886" y="-115.5" />
+      <point x="931.4728546626985" y="837.0" />
+      <point x="1009.2916666666667" y="837.0" />
+      <point x="1009.2916666666667" y="192.0" />
+      <point x="844.3506324404764" y="192.0" />
+      <point x="23.77777777777783" y="71.0" />
+    </edge>
+    <edge source="db.Items" target="classes.FileIO">
+      <point x="120.79999999999995" y="-103.5" />
+      <point x="712.8416666666667" y="560.0" />
+      <point x="751.1978546626985" y="560.0" />
+      <point x="-69.375" y="159.0" />
+    </edge>
+    <edge source="db.Orders" target="object.Order">
+      <point x="-152.14285714285705" y="-70.5" />
+      <point x="278.3988095238096" y="1304.0" />
+      <point x="184.41666666666663" y="1304.0" />
+      <point x="-47.125" y="203.5" />
+    </edge>
+    <edge source="db.Orders" target="db.Items">
+      <point x="50.71428571428578" y="-70.5" />
+      <point x="481.2559523809524" y="1284.0" />
+      <point x="592.0416666666667" y="1284.0" />
+      <point x="0.0" y="103.5" />
+    </edge>
+    <edge source="db.Staffs" target="object.Staff">
+      <point x="127.59999999999991" y="-81.5" />
+      <point x="1392.1416666666664" y="1304.0" />
+      <point x="1363.1603546626984" y="1304.0" />
+      <point x="34.5" y="126.5" />
+    </edge>
+    <edge source="db.Staffs" target="classes.FileIO">
+      <point x="-127.59999999999991" y="-81.5" />
+      <point x="1136.9416666666666" y="1304.0" />
+      <point x="1169.1603546626986" y="1304.0" />
+      <point x="1169.1603546626986" y="580.0" />
+      <point x="889.9478546626985" y="580.0" />
+      <point x="69.375" y="159.0" />
+    </edge>
+    <edge source="object.Order" target="classes.Objects">
+      <point x="-47.125" y="-203.5" />
+      <point x="184.41666666666663" y="827.0" />
+      <point x="11.0" y="827.0" />
+      <point x="11.0" y="172.0" />
+      <point x="749.2395213293651" y="172.0" />
+      <point x="-71.33333333333337" y="71.0" />
+    </edge>
+    <edge source="classes.FileIO" target="classes.Objects">
+      <point x="0.0" y="-159.0" />
+      <point x="0.0" y="71.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.2684890228153252" x="916.3205280483252" y="771.4093053246004" />
+  <SelectedNodes>
+    <node>db.Items</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
