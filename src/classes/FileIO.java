@@ -10,15 +10,23 @@ import java.util.Scanner;
 
 /**
  * I/O class for reading/writing to files with basic functions such as getById/insert/update.
+ * This class will make it easy to save and load back different objects with the same set of code. Any object that extends the class Objects can be saved and read from file.
  */
 public class FileIO<T extends Objects>
 {
     /**
      * The directory to store data files
      */
-    private static String dataDirectory = System.getProperty("user.dir") + "/data/";
+    private static final String dataDirectory = System.getProperty("user.dir") + "/data/";
 
+    /**
+     * The name of the file that we are gonna save/read from
+     */
     private String fileName;
+
+    /**
+     * The class of the object. We will use this to instantiate the object.
+     */
     private Class<T> aClass;
 
     /**
@@ -117,7 +125,7 @@ public class FileIO<T extends Objects>
             Scanner sc = new Scanner(file);
 
             while (sc.hasNextLine()) {
-                T line = aClass.getConstructor(String.class).newInstance(sc.nextLine());
+                T line = aClass.getConstructor(String.class).newInstance(sc.nextLine()); //make a new instance of the class given passing in the variable that it needs.
                 if (line.getID().equals(String.valueOf(id)))
                     return line;
             }
@@ -142,7 +150,7 @@ public class FileIO<T extends Objects>
             return;
 
         try {
-            PrintWriter pw = new PrintWriter(new FileOutputStream(dataDirectory + fileName, true));
+            PrintWriter pw = new PrintWriter(new FileOutputStream(dataDirectory + fileName, true)); //append set to true as we want to append to the file and not overwrite it.
             pw.println(t.saveString());
             pw.close();
         } catch (FileNotFoundException ex) {

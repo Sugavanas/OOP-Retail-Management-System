@@ -4,15 +4,26 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * A class that basically does the same thing as Scanner but catches errors instead of terminating the program.
+ */
 public class Input
 {
+
     Scanner scanner;
-    Pattern delimeter;
+
+    Pattern delimiter;
+
     public Input()
     {
         scanner = new Scanner(System.in);
-        delimeter = scanner.delimiter();
+        delimiter = scanner.delimiter(); //store the default delimiter.
     }
+
+    /**
+     * Read the next integer and catch input mismatch exception.
+     * @return String
+     */
     public int nextInt()
     {
         /* //OLD Method
@@ -53,9 +64,13 @@ public class Input
         return val;
     }
 
+    /**
+     * Read the next string and catch input mismatch exception. Change scanner delimiter to \n so space character is accepted as input.
+     * @return String
+     */
     public String next()
     {
-        scanner.useDelimiter("\n"); //So space isn't counted as a delimeter.
+        scanner.useDelimiter("\n"); //So space isn't counted as a delimiter.
         String val = null;
         do {
             try {
@@ -70,10 +85,14 @@ public class Input
 
             }
         }while(val == null);
-        scanner.useDelimiter(delimeter); //Reset back to original delimeter.
+        scanner.useDelimiter(delimiter); //Reset back to original delimeter.
         return val.trim();
     }
 
+    /**
+     * Read the nextDouble and catch input mismatch exception
+     * @return double
+     */
     public double nextDouble()
     {
         Double val = null;
@@ -91,6 +110,10 @@ public class Input
         return val;
     }
 
+    /**
+     * Read the nextLine
+     * @return String
+     */
     public String nextLine()
     {
         return scanner.nextLine();

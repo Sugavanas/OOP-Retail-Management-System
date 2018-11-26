@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RMS.jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RMS_jar</output-path>
+    <root id="archive" name="RMS.jar">
+      <element id="module-output" name="OOP-Assignment" />
+    </root>
+  </artifact>
+</component>

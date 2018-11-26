@@ -848,6 +848,9 @@ public class Main
         System.out.println();
     }
 
+    /**
+     * A function that waits for the user to press enter.
+     */
     private static void waitForEnter()
     {
         System.out.println("\n\nPress enter to continue...");
@@ -858,6 +861,11 @@ public class Main
         }
     }
 
+    /**
+     * A simple function that takes in a double and prints it out currency format.
+     * @param amount The amount that needs to be printed out
+     * @return String that can be displayed to the user.
+     */
     private static String currencyFormat(double amount)
     {
         return currencySymbol + String.format("%.2f", amount);

@@ -1,7 +1,8 @@
 package classes;
 
 /**
- * Abstract class for db methods.
+ * Abstract class object
+ * This class contains all the methods that is used by FileIO class as abstract methods.
  */
 public abstract class Objects
 {
